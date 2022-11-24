@@ -1,0 +1,88 @@
+<table class="w-full border-separate border-spacing-y-2 table-todos">
+  <thead>
+    <tr class="capitalize">
+      <th
+        appResize
+        [filter]="value.filter"
+        *ngFor="let value of theadTable; let idx = index"
+        class="border-b-2 border-solid border-white pb-2"
+      >
+        <div class="flex flex-row gap-x-2 justify-center items-center">
+          <div class="text-[18px] text-sm lg:text-base">{{ value.title }}</div>
+          <button
+            [id]="'btn-filter-' + idx"
+            class=""
+            [ngClass]="{
+              'rotate-180': filter === value.filter && stateFilter,
+              'rotate-0': filter === value.filter && !stateFilter
+            }"
+            (click)="toggleFilter(value.filter)"
+          >
+            <i
+              class="bi bi-sort-down-alt text-2xl"
+              [ngClass]="{
+                'text-white': filter === value.filter,
+                'text-gray-600': filter != value.filter
+              }"
+            ></i>
+          </button>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      (dblclick)="editItem(item)"
+      *ngFor="let item of tasks"
+      class="outline outline-1 outline-[#ffffff80] cursor-pointer text-[18px] transition-all duration-500 select-none"
+      [ngClass]="{
+        'bg-[#474e5fbb] cursor-not-allowed': item.status,
+        'hover:bg-[#00ff9559]': !item.status
+      }"
+    >
+      <td
+        class="px-3 py-3 relative text-sm lg:text-base"
+        [ngClass]="{ triangle: item.status }"
+      >
+        {{ item.name }}
+      </td>
+      <td class="hidden sm:table-cell px-3 py-3 text-center">
+        {{ item.category }}
+      </td>
+      <td class="hidden md:table-cell px-3 py-3 text-center">
+        {{ item.priority | priority }}
+      </td>
+      <td class="hidden lg:table-cell px-3 py-3 text-center">
+        {{ item.date }}
+      </td>
+      <td class="px-3 py-3 text-center">
+        <div
+          class="sm:text-xl md:text-2xl text-black flex flex-row justify-center items-center gap-x-3"
+        >
+          <button
+            class="btn-edit w-6 sm:w-7 md:w-8 bg-[#3a69a7] rounded-md overflow-hidden"
+            [ngClass]="{ 'bg-[#485363] cursor-not-allowed': item.status }"
+            (click)="editItem(item)"
+          >
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button
+            class="btn-delete w-6 sm:w-7 md:w-8 bg-[#ec1414] rounded-md overflow-hidden"
+            (click)="deleteItem(item)"
+          >
+            <i class="bi bi-trash"></i>
+          </button>
+          <button
+            class="btn-complete w-6 sm:w-7 md:w-8 bg-white rounded-md overflow-hidden text-white transition-all duration-300"
+            (click)="completeItem(item.id)"
+            [ngClass]="{
+              'bg-[#15814f]': item.status
+            }"
+          >
+            <i class="bi bi-check2"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

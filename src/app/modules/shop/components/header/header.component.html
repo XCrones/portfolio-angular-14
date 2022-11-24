@@ -1,0 +1,66 @@
+<div class="h-full w-full bg-purple-800 flex flex-col relative z-30">
+  <nav
+    class="h-full w-full flex flex-row justify-between items-center px-2 rounded-sm relative"
+  >
+    <div class="text-xl title">
+      <div class="first-letter:uppercase cursor-pointer">fake store</div>
+    </div>
+    <div class="flex-auto hidden sm:block">
+      <app-tools></app-tools>
+    </div>
+    <div class="sm:hidden">
+      <button
+        (click)="toggleHamburger()"
+        type="button"
+        class="btn-hamburger transition-all duration-300 text-2xl"
+        [ngClass]="{ 'scale-150': !isOpenhamburger }"
+      >
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+    <div class="flex flex-row items-center gap-x-3 text-[35px]">
+      <div class="">
+        <button type="button" class="btn-profile" (click)="toggleProfile()">
+          <i class="bi bi-person-check" *ngIf="isAuth"></i>
+          <i class="bi bi-person-x" *ngIf="!isAuth"></i>
+        </button>
+      </div>
+      <div class="">
+        <button (click)="toggleCart()" type="button" class="relative btn-cart">
+          <div
+            class="absolute top-[30%] left-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center font-bold"
+          >
+            <div
+              class="text-sm bg-white text-black px-1 rounded-full"
+              *ngIf="sumCart > 0"
+            >
+              {{ sumCart }}
+            </div>
+          </div>
+          <i class="bi bi-cart2"></i>
+        </button>
+      </div>
+    </div>
+    <div
+      [@openClose]="!isHideCart ? 'winOpen' : 'winClose'"
+      class="absolute -bottom-1 translate-y-full w-full sm:w-96 bg-purple-800 z-20 transition-all duration-300"
+    >
+      <app-cart
+        (showProfile)="toggleProfile()"
+        (errAuth)="toggleProfile()"
+      ></app-cart>
+    </div>
+    <div
+      [@openClose]="!isHideProfile ? 'winOpen' : 'winClose'"
+      class="absolute -bottom-1 translate-y-full w-full sm:w-96 bg-purple-800 z-20 transition-all duration-300"
+    >
+      <app-profile></app-profile>
+    </div>
+  </nav>
+  <div
+    class="sm:hidden absolute left-0 right-0"
+    [@openClose]="!isOpenhamburger ? 'open' : 'closed'"
+  >
+    <app-tools></app-tools>
+  </div>
+</div>

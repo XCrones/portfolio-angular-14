@@ -1,0 +1,215 @@
+<form
+  [formGroup]="itemForm"
+  (ngSubmit)="onSubmitItem()"
+  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full sm:w-1/2 md:w-5/12 lg:w-[45%] bg-[rgba(31,39,56,0.98)] rounded-2xl"
+>
+  <div class="h-full w-full flex flex-col p-2 gap-y-4">
+    <div
+      class="flex flex-row justify-between items-center relative horizontal-line"
+    >
+      <div class="text-xs lg:text-base">
+        {{ editItem.date }}
+      </div>
+      <button
+        appTextNeon
+        [textColorShadow]="'#fff'"
+        [textStyleShadow]="'medium'"
+        [tIsNeonEnable]="neonState"
+        [textHover]="true"
+        class="btn-close transition-all duration-500 text-xl lg:text-2xl"
+        (click)="closePopup()"
+        type="button"
+      >
+        <i class="bi bi-x-octagon"></i>
+      </button>
+    </div>
+    <div class="flex flex-col items-center justify-center">
+      <input
+        [formControl]="nameControl"
+        [maxlength]="formLengths.name.max"
+        type="text"
+        placeholder="имя задачи"
+        required
+        class="w-11/12 px-2 py-[2px] text-white outline-none placeholder:text-white placeholder:text-sm text-sm text-center rounded-lg overflow-hidden bg-[rgba(105,124,161,0.5)]"
+      />
+      <div
+        class="text-sm text-red-600"
+        *ngIf="nameControl.errors?.['minlength'] && nameControl.touched"
+      >
+        min length:
+        {{ nameControl.errors?.['minlength'].requiredLength }}, left:
+        {{ nameControl.errors?.['minlength'].requiredLength - nameControl.errors?.['minlength'].actualLength }}
+      </div>
+      <div
+        class="text-sm text-red-600"
+        *ngIf="nameControl.errors?.['maxlength'] && nameControl.touched"
+      >
+        max length:
+        {{ nameControl.errors?.['maxlength'].requiredLength }}, delete:
+        {{ nameControl.errors?.['maxlength'].actualLength - nameControl.errors?.['maxlength'].requiredLength }}
+        char(s)
+      </div>
+      <div
+        class="text-sm text-red-600"
+        *ngIf="nameControl.errors?.['required'] && nameControl.touched"
+      >
+        required field
+      </div>
+    </div>
+    <div class="flex flex-row gap-x-2 relative">
+      <div
+        class="flex-[0_1_50%] flex flex-col gap-y-2 justify-between vertical-line"
+      >
+        <div class="text-center capitalize">приоритет:</div>
+        <div class="flex flex-col gap-y-2">
+          <div class="flex flex-row gap-x-3 p-1 items-center priorities">
+            <button
+              id="setPriority2"
+              type="button"
+              class="h-5 lg:h-7 w-5 lg:w-7 rounded-full bg-white relative"
+              (click)="setPriority(2)"
+            >
+              <div
+                [ngClass]="{ 'bg-red-600': editItem.priority === 2 }"
+                class="absolute top-1/2 left-1/2 h-3/4 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-300"
+              ></div>
+            </button>
+            <div class="capitalize text-sm">высокий</div>
+          </div>
+          <div class="flex flex-row gap-x-3 p-1 items-center priorities">
+            <button
+              id="setPriority1"
+              type="button"
+              class="h-5 lg:h-7 w-5 lg:w-7 rounded-full bg-white relative"
+              (click)="setPriority(1)"
+            >
+              <div
+                [ngClass]="{ 'bg-orange-600': editItem.priority === 1 }"
+                class="absolute top-1/2 left-1/2 h-3/4 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-300"
+              ></div>
+            </button>
+            <div class="capitalize text-sm">средний</div>
+          </div>
+          <div class="flex flex-row gap-x-3 p-1 items-center priorities">
+            <button
+              id="setPriority0"
+              type="button"
+              class="h-5 lg:h-7 w-5 lg:w-7 rounded-full bg-white relative"
+              (click)="setPriority(0)"
+            >
+              <div
+                [ngClass]="{ 'bg-green-600': editItem.priority === 0 }"
+                class="absolute top-1/2 left-1/2 h-3/4 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-300"
+              ></div>
+            </button>
+            <div class="capitalize text-sm">низкий</div>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <form
+            [formGroup]="categoryForm"
+            (ngSubmit)="onSubmitCategori()"
+            class="flex flex-row gap-x-1 justify-center items-center"
+          >
+            <input
+              [formControl]="categoriControl"
+              [maxlength]="formLengths.categori.max"
+              type="text"
+              placeholder="новая категория"
+              class="py-[1px] w-full text-white outline-none placeholder:text-white placeholder:text-xs text-center rounded-lg overflow-hidden bg-[rgba(105,124,161,0.5)]"
+            />
+            <button
+              type="submit"
+              class="btn-submit-category text-base transition-all duration-500"
+            >
+              <i class="bi bi-save2"></i>
+            </button>
+          </form>
+          <div
+            class="text-sm text-red-600"
+            *ngIf="categoriControl.errors?.['minlength'] && categoriControl.touched"
+          >
+            min length:
+            {{ categoriControl.errors?.['minlength'].requiredLength}}, left:
+            {{ categoriControl.errors?.['minlength'].requiredLength - categoriControl.errors?.['minlength'].actualLength }}
+          </div>
+          <div
+            class="text-sm text-red-600"
+            *ngIf="categoriControl.errors?.['maxlength'] && categoriControl.touched"
+          >
+            max length:
+            {{ categoriControl.errors?.['maxlength'].requiredLength }}, delete:
+            {{ categoriControl.errors?.['maxlength'].actualLength - categoriControl.errors?.['maxlength'].requiredLength }}
+            char(s)
+          </div>
+        </div>
+      </div>
+      <div class="flex-[0_1_50%] flex flex-col gap-y-2 justify-between">
+        <div class="text-center capitalize">категория:</div>
+        <div class="flex flex-col gap-y-2">
+          <div
+            class="flex flex-row gap-x-3 items-center justify-end p-1 categories"
+            *ngFor="let item of paginator.parse(categories)"
+          >
+            <div class="text-sm">
+              {{ item }}
+            </div>
+            <button
+              type="button"
+              class="btn-set-category h-5 lg:h-7 w-5 lg:w-7 rounded-md bg-white relative"
+              (click)="setCategory(item)"
+            >
+              <div
+                class="absolute top-1/2 left-1/2 h-3/4 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-md transition-all duration-300"
+                [ngClass]="{ 'bg-sky-600': editItem.category === item }"
+              ></div>
+            </button>
+          </div>
+        </div>
+        <div class="flex flex-row justify-end gap-x-1">
+          <button
+            type="button"
+            class="btn-set-page border-0 bg-gray-600 w-5 h-5 text-center rounded-sm transition-all duration-300 flex justify-center items-center"
+            [ngClass]="{ 'link-active': paginator.isEqualPage(idx) }"
+            *ngFor="let value of paginator.pages(categories); let idx = index"
+            (click)="paginator.setCurrPage(idx)"
+          >
+            {{ idx + 1 }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="">
+      <div class="">
+        <textarea
+          [formControl]="descriptionControl"
+          [maxLength]="formLengths.description.max"
+          placeholder="описание задачи"
+          class="px-1 w-full h-15 text-white outline-none placeholder:text-white placeholder:text-sm text-sm resize-none rounded-lg overflow-hidden bg-[rgba(105,124,161,0.5)]"
+          >{{ editItem.description }}</textarea
+        >
+      </div>
+    </div>
+    <div class="flex flex-row justify-around gap-x-2 items-center">
+      <button
+        type="submit"
+        class="btn-submit flex flex-row gap-x-2 items-center justify-between bg-green-700 p-2 hover:bg-green-500 rounded-md transition-all duration-300 w-1/2"
+      >
+        <div class="capitalize text-xs sm:text-sm">сохранить</div>
+        <div class="">
+          <i class="bi bi-check-square text-sm sm:text-xl"></i>
+        </div>
+      </button>
+      <button
+        type="button"
+        (click)="closePopup()"
+        class="btn-cancel flex flex-row gap-x-2 items-center justify-between bg-red-700 hover:bg-red-500 p-2 rounded-md transition-all duration-300 w-1/2"
+      >
+        <div class="capitalize text-xs sm:text-sm">отмена</div>
+        <div class="">
+          <i class="bi bi-x-square text-sm sm:text-xl"></i>
+        </div>
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,49 @@
+<div class="w-full flex flex-row items-center bg-purple-800 px-2 gap-x-1">
+  <div
+    class="flex-[0_1_50%] relative flex flex-row items-center justify-center gap-x-3"
+  >
+    <button
+      (click)="toggleIsHideFilters()"
+      type="button"
+      class="btn-toggle flex flex-row items-center gap-x-1 text-xl"
+    >
+      <div class="">
+        <i class="bi bi-funnel-fill"></i>
+      </div>
+      <div class="capitalize text-sm sm:text-base">{{ currFilter }}</div>
+    </button>
+    <button
+      (click)="toggleStateFilter()"
+      class="btn-state transition-all duration-300"
+      [ngClass]="{ '-rotate-180': stateCurrFilter }"
+    >
+      <div class="text-2xl">
+        <i class="bi bi-filter-left"></i>
+      </div>
+    </button>
+    <div
+      class="absolute z-20 top-full md:translate-x-1/2 left-0 bg-purple-800 py-2 flex flex-col gap-y-3"
+      [@openClose]="!isHideFilters ? 'winOpen' : 'winClose'"
+    >
+      <button
+        (click)="setCurrFilter(item)"
+        type="button"
+        class="btn-set hover:bg-purple-500 px-5 w-full text-left"
+        *ngFor="let item of filters"
+      >
+        <span
+          class="first-letter:uppercase whitespace-nowrap text-sm sm:text-base"
+          >сортировать по {{ item }}</span
+        >
+      </button>
+    </div>
+  </div>
+  <div class="flex-[0_1_50%] h-full w-full flex justify-center py-[10px]">
+    <input
+      [(ngModel)]="search"
+      class="w-full sm:w-1/2 p-1 rounded-md text-black"
+      type="text"
+      placeholder="поиск"
+    />
+  </div>
+</div>

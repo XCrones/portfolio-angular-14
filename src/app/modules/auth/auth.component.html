@@ -1,0 +1,49 @@
+<div class="h-full w-full p-3 overflow-hidden relative">
+  <div
+    *ngIf="isLoad"
+    class="auth-load absolute top-0 left-0 h-full w-full bg-[#bdb5b556]"
+  >
+    <div class="h-full w-full relative load">
+      <div
+        appBoxNeon
+        [boxShadowColor]="'#ff0000'"
+        [boxStyleShadow]="'medium'"
+        [bIsNeonEnable]="neonState"
+      ></div>
+      <div
+        appBoxNeon
+        [boxShadowColor]="'#008000'"
+        [boxStyleShadow]="'medium'"
+        [bIsNeonEnable]="neonState"
+      ></div>
+      <div
+        appBoxNeon
+        [boxShadowColor]="'#0000ff'"
+        [boxStyleShadow]="'medium'"
+        [bIsNeonEnable]="neonState"
+      ></div>
+    </div>
+  </div>
+  <div *ngIf="!isToggleForm" id="signUp" class="h-full w-full">
+    <app-sign-up
+      (isToggleForm)="toggleForm()"
+      (isCloseProfile)="closeProfile()"
+      [neonState]="neonState"
+      (isUserSignIn)="userSingIn($event)"
+      (load)="getIsLoad($event)"
+    >
+      <ng-content select="[close]"></ng-content>
+    </app-sign-up>
+  </div>
+  <div *ngIf="isToggleForm" id="signIn" class="h-full w-full">
+    <app-sign-in
+      (isToggleForm)="toggleForm()"
+      (isCloseProfile)="closeProfile()"
+      [neonState]="neonState"
+      (isUserSignIn)="userSingIn($event)"
+      (load)="getIsLoad($event)"
+    >
+      <ng-content select="[close]"></ng-content>
+    </app-sign-in>
+  </div>
+</div>

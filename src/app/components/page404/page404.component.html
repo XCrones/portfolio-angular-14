@@ -1,0 +1,16 @@
+<div
+  class="h-full w-full flex flex-col gap-y-2 justify-center items-center text-white"
+>
+  <div
+    class="text-7xl text-code"
+    [ngClass]="{ 'text-neon-flicker': stateNeon }"
+  >
+    404
+  </div>
+  <div
+    [ngClass]="{ 'text-neon-flicker': stateNeon }"
+    class="uppercase text-5xl text-title"
+  >
+    page not found
+  </div>
+</div>

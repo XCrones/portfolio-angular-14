@@ -1,0 +1,124 @@
+<div
+  class="h-full w-full flex flex-col gap-y-2 sm:flex-row sm:gap-x-4 lg:gap-8"
+>
+  <div
+    class="flex-[0_1_50%] flex flex-col gap-y-1 capitalize progress text-[14px] sm:text-base"
+  >
+    <div
+      appBoxNeon
+      [boxShadowColor]="'#800080'"
+      [boxStyleShadow]="'medium'"
+      [boxHover]="true"
+      [bIsNeonEnable]="neonState"
+      class="flex flex-row justify-between items-center border border-solid border-gray-300 rounded-md px-1 relative overflow-hidden transition-all duretion-200"
+    >
+      <div
+        [ngStyle]="{ width: sumTasks() > 0 ? 100 + '%' : 0 + '%' }"
+        class="absolute left-0 top-0 h-full z-0 transition-all duration-700 bg-[#800080]"
+      ></div>
+      <span class="z-10">всего:</span>
+      <span class="z-10">{{ sumTasks() }}</span>
+    </div>
+    <div
+      appBoxNeon
+      [boxShadowColor]="'#15814f'"
+      [boxStyleShadow]="'medium'"
+      [boxHover]="true"
+      [bIsNeonEnable]="neonState"
+      class="flex flex-row justify-between items-center border border-solid border-gray-300 rounded-md px-1 relative overflow-hidden transition-all duretion-200"
+    >
+      <div
+        [ngStyle]="{
+          width: pctOkTasks() > 0 ? pctOkTasks() + '%' : 0 + 'px'
+        }"
+        class="absolute left-0 top-0 h-full z-0 transition-all duration-700 bg-[#15814f]"
+      ></div>
+      <span class="flex-[0_1_25%] z-10">выполнено:</span>
+      <span class="flex-auto text-center z-10">
+        {{ pctOkTasks() > 0 ? pctOkTasks() : 0 }}%
+      </span>
+      <span class="flex-[0_1_10%] text-right z-10">{{ sumOkTasks() }}</span>
+    </div>
+    <div
+      appBoxNeon
+      [boxShadowColor]="'#ec1414'"
+      [boxStyleShadow]="'medium'"
+      [boxHover]="true"
+      [bIsNeonEnable]="neonState"
+      class="flex flex-row justify-between items-center border border-solid border-gray-300 rounded-md px-1 relative overflow-hidden transition-all duretion-200"
+    >
+      <div
+        [ngStyle]="{
+          width: pctNokTasks() > 0 ? pctNokTasks() + '%' : 0 + 'px'
+        }"
+        class="absolute left-0 top-0 h-full z-0 transition-all duration-700 bg-[#ec1414]"
+      ></div>
+
+      <span class="flex-[0_1_25%] z-10">назначено:</span>
+      <span class="flex-auto text-center z-10">
+        {{ pctNokTasks() > 0 ? pctNokTasks() : 0 }}%
+      </span>
+      <span class="flex-[0_1_10%] text-right z-10">{{ sumNokTasks() }}</span>
+    </div>
+  </div>
+  <div class="flex-[0_1_50%] flex flex-row gap-x-2">
+    <div class="flex-[0_1_50%] flex flex-col justify-between gap-y-2">
+      <button
+        (click)="createNewTask()"
+        appBoxNeon
+        [boxShadowColor]="'#2284b1'"
+        [boxStyleShadow]="'medium'"
+        [boxHover]="true"
+        [bIsNeonEnable]="neonState"
+        class="btn-create flex flex-row justify-between items-center h-8 sm:h-10 bg-[#2284b1] px-2 rounded-lg border border-solid border-gray-400 panel-btn transition-all duretion-200"
+      >
+        <div class="first-letter:uppercase text-xs md:text-base">создать</div>
+        <i class="bi bi-plus-square text-sm xl:text-xl"></i>
+      </button>
+      <button
+        (click)="deleteAllTasks()"
+        appBoxNeon
+        [boxShadowColor]="'#ec1414'"
+        [boxStyleShadow]="'medium'"
+        [boxHover]="true"
+        [bIsNeonEnable]="neonState"
+        class="btn-delete flex flex-row justify-between items-center h-8 sm:h-10 bg-[#ec1414] px-2 rounded-lg border border-solid border-gray-400 panel-btn transition-all duretion-200"
+      >
+        <div class="first-letter:uppercase text-xs md:text-base">
+          удалить всё
+        </div>
+        <i class="bi bi-trash text-sm xl:text-xl"></i>
+      </button>
+    </div>
+    <div class="flex-[0_1_50%] flex flex-col justify-between gap-y-2">
+      <button
+        (click)="completeAllTasks()"
+        appBoxNeon
+        [boxShadowColor]="'#15814f'"
+        [boxStyleShadow]="'medium'"
+        [boxHover]="true"
+        [bIsNeonEnable]="neonState"
+        class="btn-complete flex flex-row justify-between items-center h-8 sm:h-10 bg-[#15814f] px-2 rounded-lg border border-solid border-gray-400 panel-btn transition-all duretion-200"
+      >
+        <div class="first-letter:uppercase text-xs md:text-base">
+          выполнить всё
+        </div>
+        <i class="bi bi-clipboard-check text-sm xl:text-xl"></i>
+      </button>
+      <button
+        (click)="setAllTasks()"
+        appBoxNeon
+        [boxShadowColor]="'#993199'"
+        [boxStyleShadow]="'medium'"
+        [boxHover]="true"
+        [bIsNeonEnable]="neonState"
+        class="btn-set flex flex-row justify-between items-center h-8 sm:h-10 bg-[#993199] px-2 rounded-lg border border-solid border-gray-400 panel-btn transition-all duretion-200"
+      >
+        <div class="first-letter:uppercase text-xs md:text-base">
+          назначить всё
+        </div>
+        <i class="bi bi-clipboard2 text-sm xl:text-xl"></i>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="flex flex-row justify-between items-center py-4 px-2">
+  <div class="p-1">
+    <button
+      (click)="navBack()"
+      appTextNeon
+      [textColorShadow]="styleMenu.color"
+      [textStyleShadow]="'medium'"
+      [textColor]="styleMenu.color"
+      [textSetColor]="true"
+      [textHover]="true"
+      [tIsNeonEnable]="neonState"
+      appBoxNeon
+      [boxShadowColor]="styleMenu.color"
+      [boxStyleShadow]="'light'"
+      [bIsNeonEnable]="neonState"
+      class="btn-back h-[35px] md:h-[50px] w-[50px] md:w-[70px] transition-all duration-300 border-2 border-solid border-sky-500 rounded-xl md:rounded-2xl"
+    >
+      <i class="bi bi-arrow-left text-2xl md:text-4xl"></i>
+    </button>
+  </div>
+  <div class="uppercase gap-x-1 md:gap-x-3 select-none text-2xl md:text-4xl">
+    <span class="title inline-block tracking-[2px] pr-1 md:pr-2">
+      {{ styleMenu.title }}
+    </span>
+    <button
+      (click)="toggleHideHeader()"
+      class="btn-hide inline-block w-[36px] h-[36px] transition-all duration-300"
+      appRotate
+      [isRotate]="isHideHeader"
+      [rIsNeonEnable]="neonState"
+      [rFixColor]="true"
+      [rColor]="styleMenu.color"
+      [rFixTextShadow]="true"
+      [rHoverTextShadow]="true"
+      [rHoverTextColor]="true"
+      [rColorTextShadow]="styleMenu.color"
+      [rStyleTextSahdow]="'medium'"
+    >
+      <i class="bi bi-chevron-double-down leading-2"></i>
+    </button>
+  </div>
+  <div class="text-2xl md:text-3xl">
+    <button
+      (click)="showAbout()"
+      class="btn-about inline-block w-[30px] h-[30px] transition-all duration-300 leading-4 mr-1 md:mr-2"
+      appRotate
+      [isRotate]="isHideInfo"
+      [rIsNeonEnable]="neonState"
+      [rFixColor]="true"
+      [rColor]="styleMenu.color"
+      [rFixTextShadow]="true"
+      [rHoverTextShadow]="true"
+      [rHoverTextColor]="true"
+      [rColorTextShadow]="styleMenu.color"
+      [rStyleTextSahdow]="'medium'"
+    >
+      <i class="bi bi-info-circle"></i>
+    </button>
+    <a
+      [href]="styleMenu.link"
+      target="_blank"
+      appTextNeon
+      [textColorShadow]="styleMenu.color"
+      [textStyleShadow]="'medium'"
+      [textColor]="styleMenu.color"
+      [textSetColor]="true"
+      [textHover]="true"
+      [tIsNeonEnable]="neonState"
+      class="inline-block w-[30px] h-[30px] transition-all duration-300 leading-4"
+    >
+      <i class="bi bi-link-45deg"></i>
+    </a>
+  </div>
+</div>

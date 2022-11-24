@@ -1,0 +1,85 @@
+<div class="text-white py-[15px] px-[5px] flex flex-col h-full w-full">
+  <h1
+    class="uppercase text-center text-[35px] md:text-[45px] title leading-[40px] py-7"
+  >
+    {{ aboutMe.title }}
+    <span
+      appTextNeon
+      [textColorShadow]="colorRedNeon"
+      [textStyleShadow]="'medium'"
+      [textColor]="colorRed"
+      [textSetColor]="true"
+      [tIsNeonEnable]="neon"
+      class="tracking-[1px] color-red transition-all duration-500"
+      >{{ aboutMe.frameWork }}</span
+    >
+  </h1>
+  <div class="flex flex-col md:flex-row about-me flex-[1_1_100%]">
+    <div class="flex-[0_1_50%] flex justify-center items-center">
+      <div class="w-full lg:max-w-[75%] ml-4">
+        <h2 class="py-3 first-letter:uppercase text-xl">
+          {{ aboutMe.greetings }}
+        </h2>
+        <h2 class="py-2 first-letter:uppercase text-[14px] md:text-[15px]">
+          {{ aboutMe.whatIsThis }}
+        </h2>
+        <div class="flex flex-col ml-3 lg:ml-8">
+          <div
+            class="flex flex-row items-center text-[14px] md:text-base"
+            *ngFor="let value of aboutMe.search"
+          >
+            <h3 class="flex-[0_1_40%] text-[#ff3c00ce]">
+              {{ value.about }}
+            </h3>
+            <h3 class="flex-auto">{{ value.goal }}</h3>
+          </div>
+        </div>
+        <h2 class="py-4 first-letter:uppercase text-[18px]">
+          {{ aboutMe.subtitle }}
+        </h2>
+      </div>
+    </div>
+    <div class="flex-[0_1_50%] flex flex-col justify-between items-center">
+      <h2 class="text-center first-letter:uppercase text-2xl pb-4">навыки</h2>
+      <div
+        class="flex-auto flex flex-col flex-nowrap lg:flex-row lg:flex-wrap w-full justify-start pl-2 items-start gap-y-3 lg:gap-y-0"
+      >
+        <div
+          class="flex flex-row items-center flex-[0_1_50%] md:gap-x-2"
+          *ngFor="let item of paginator.parse(mySkills)"
+        >
+          <div class="w-[64px] h-[64px]" [@showItems]="'showImg'">
+            <img
+              class="max-w-full max-h-full"
+              [src]="'../../../assets/img/skills/' + item.img + '.png'"
+              [alt]="item.img"
+            />
+          </div>
+          <div class="">
+            <h3
+              class="text-[15px] first-letter:uppercase"
+              [@showItems]="'showTitle'"
+            >
+              {{ item.title }}
+            </h3>
+            <h4
+              class="capitalize text-[13px]"
+              *ngFor="let value of item.about"
+              [@showItems]="'showText'"
+            >
+              &nbsp; - &nbsp;{{ value }}
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="py-5 lg:py-2 flex flex-row gap-x-1">
+        <button
+          [ngClass]="{ 'link-active': paginator.isEqualPage(idx) }"
+          class="border-0 bg-gray-600 w-6 h-6 text-center rounded-full"
+          *ngFor="let page of paginator.pages(mySkills); let idx = index"
+          (click)="paginator.setCurrPage(idx)"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>

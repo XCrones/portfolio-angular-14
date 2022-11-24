@@ -1,0 +1,20 @@
+<nav class="h-full w-full">
+  <ul
+    class="h-full w-full flex flex-row justify-evenly items-center md:text-xl capitalize z-0"
+  >
+    <li
+      [ngClass]="{ 'shadow-red': neonState }"
+      class=""
+      *ngFor="let item of itemsNav"
+    >
+      <a
+        [routerLink]="item.link"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="transition-all duration-500 tracking-[1px] text-white"
+      >
+        {{ item.title }}
+      </a>
+    </li>
+  </ul>
+</nav>

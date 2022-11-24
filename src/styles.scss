@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~reset-css/reset.css";
+@import "./variables.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "material-icons/iconfont/material-icons.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Yatra+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alkalami&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caladea&display=swap");
+
+.load {
+  div {
+    &:nth-child(1) {
+      left: 0%;
+      background-color: #ff0000;
+      animation: startLoad 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+    }
+    &:nth-child(2) {
+      left: 10%;
+      background-color: #008000;
+      animation: startLoad 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+    }
+    &:nth-child(3) {
+      left: 20%;
+      background-color: #0000ff;
+      animation: startLoad 0.9s cubic-bezier(0.39, 0.575, 0.565, 1) infinite;
+    }
+
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+}
+
+@keyframes startLoad {
+  0% {
+    left: 0%;
+  }
+  100% {
+    left: 100%;
+  }
+}

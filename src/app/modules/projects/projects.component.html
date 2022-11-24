@@ -1,0 +1,64 @@
+<div class="flex-[1_1_100%] h-full w-full text-white">
+  <div
+    *ngIf="!isHidePorjects"
+    class="projects-items h-full w-full flex flex-col md:flex-row justify-center items-center gap-y-5 py-4 md:py-0 md:gap-x-10"
+  >
+    <a
+      [@showItems]="'source0'"
+      class="shadow flex flex-col gap-y-8 justify-center items-center border-solid border border-white rounded-2xl pl-16 pr-9 py-16 relative hover:-translate-x-[25%] md:hover:-translate-x-0 md:hover:-translate-y-10 link"
+      routerLink="todo"
+    >
+      <span class="text-center uppercase text-2xl relative link__title"
+        >todo</span
+      >
+      <i class="material-icons w-[64px] text-center !text-6xl">checklist</i>
+      <ul class="link__rings">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <div class="link__bookmark"></div>
+    </a>
+    <a
+      [@showItems]="'source1'"
+      class="flex flex-col gap-y-8 justify-center items-center border-solid border border-white rounded-2xl pl-16 pr-9 py-16 relative hover:-translate-x-[25%] md:hover:-translate-x-0 md:hover:-translate-y-10 link"
+      routerLink="shop"
+    >
+      <span class="text-center uppercase text-2xl relative link__title"
+        >shop</span
+      >
+      <i class="material-icons w-[64px] text-center !text-6xl"
+        >shopping_cart_checkout</i
+      >
+      <ul class="link__rings">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <div class="link__bookmark"></div>
+    </a>
+    <a
+      [@showItems]="'source2'"
+      class="flex flex-col gap-y-8 justify-center items-center border-solid border border-white rounded-2xl pl-16 pr-9 py-16 relative hover:-translate-x-[25%] md:hover:-translate-x-0 md:hover:-translate-y-10 link"
+      routerLink="chat"
+    >
+      <span class="text-center uppercase text-2xl relative link__title"
+        >chat</span
+      >
+      <i class="material-icons w-[64px] text-center !text-6xl">chat</i>
+      <ul class="link__rings">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <div class="link__bookmark"></div>
+    </a>
+  </div>
+  <router-outlet></router-outlet>
+</div>

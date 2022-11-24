@@ -1,0 +1,86 @@
+<div class="h-full w-full flex flex-col px-2 pb-3">
+  <app-menu-project [styleMenu]="metaMenu"></app-menu-project>
+  <div
+    class="flex flex-row items-center justify-center relative gap-x-2 w-full h-full"
+  >
+    <div
+      class="flex-grow-0 flex-shrink basis-full sm:basis-[70%] lg:basis-[50%] h-full relative"
+    >
+      <app-room></app-room>
+      <div
+        *ngIf="isLoadProfile"
+        class="absolute top-0 left-0 w-full h-full flex justify-center items-center"
+      >
+        <div class="w-32 h-32 z-[2]">
+          <img
+            class="w-full h-full"
+            [src]="'../../../../../assets/img/load-chat.svg'"
+            [alt]="'load'"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      [@openClose]="!isHideInfo ? 'popupShow' : 'popupHide'"
+      class="absolute top-0 left-0 w-full h-full bg-[#29557979] z-50"
+    >
+      <app-info-project [info]="aboutData"></app-info-project>
+    </div>
+    <div
+      [@openClose]="!isAuth ? 'popupShow' : 'popupHide'"
+      class="absolute top-0 left-0 w-full h-full z-10"
+    >
+      <div class="h-full flex justify-center items-center">
+        <div
+          class="flex-grow-0 flex-shrink basis-full sm:basis-[50%] lg:basis-[30%] bg-[#1d3a52c5] rounded-[6px]"
+        >
+          <app-auth (isUserSignIn)="getUser($event)"></app-auth>
+        </div>
+      </div>
+    </div>
+    <div
+      [@openClose]="!isHideCreate ? 'popupShow' : 'popupHide'"
+      class="absolute top-0 left-0 w-full h-full z-10"
+    >
+      <div class="h-full flex justify-center items-center">
+        <div
+          class="flex-grow-0 flex-shrink basis-full sm:basis-2/5 bg-[#1d3a52c5] rounded-[6px]"
+        >
+          <app-add-create-chat
+            (nameChat)="createChat($event)"
+            (isCancel)="resetJoinCreate()"
+            [isLoad]="isLoadJoinCreate"
+            [responseErr]="responseCreate"
+            [isResetForm]="isResetAddCreateForm"
+            (isJoinChat)="joinChat($event)"
+          >
+            <span class="inline-block" btnSubmit>создать</span>
+            <span class="inline-block" nameForm>создать</span>
+          </app-add-create-chat>
+        </div>
+      </div>
+    </div>
+    <div
+      [@openClose]="!isHideJoin ? 'popupShow' : 'popupHide'"
+      class="absolute top-0 left-0 w-full h-full z-10"
+    >
+      <div class="h-full flex justify-center items-center">
+        <div
+          class="flex-grow-0 flex-shrink basis-full sm:basis-2/5 bg-[#1d3a52c5] rounded-[6px]"
+        >
+          <app-add-create-chat
+            (nameChat)="joinChat($event)"
+            (isCancel)="resetJoinCreate()"
+            [isLoad]="isLoadJoinCreate"
+            [responseErr]="responseCreate"
+            [isResetForm]="isResetAddCreateForm"
+            (isCretaeChat)="createChat($event)"
+          >
+            <span class="inline-block" btnSubmit>присоединится</span>
+            <span class="inline-block" nameForm>присоединится</span>
+          </app-add-create-chat>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

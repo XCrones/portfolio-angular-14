@@ -1,0 +1,77 @@
+<div
+  class="h-full flex justify-center items-center"
+  *ngIf="messages.length < 1 && currChat != undefined"
+>
+  сообщений нет..
+</div>
+<div
+  *ngIf="messages.length > 0"
+  class="messages h-full flex flex-col gap-y-3 p-2 relative"
+>
+  <div
+    class="messages__item w-full flex last:pb-4"
+    *ngFor="let item of messages"
+    [ngClass]="{
+      'justify-start': item.uid != uid,
+      'justify-end': item.uid === uid
+    }"
+  >
+    <div class="flex flex-row gap-x-1 items-end">
+      <div
+        [ngClass]="{
+          'order-last': item.uid === uid
+        }"
+        class="h-5 w-5"
+      >
+        <img
+          class="max-h-full max-w-full"
+          [src]="'../../../../../assets/img/chat/user.png'"
+          [alt]="'chat'"
+        />
+      </div>
+      <div
+        [ngClass]="{
+          'rounded-bl-3xl': item.uid === uid,
+          'rounded-br-3xl': item.uid != uid
+        }"
+        class="flex flex-col gap-x-1 bg-[#2525308c] rounded-tl-3xl rounded-tr-3xl p-2"
+      >
+        <div
+          class="text-sm capitalize"
+          [ngClass]="{
+            'text-right text-sky-400': item.uid === uid,
+            'text-left text-orange-400': item.uid != uid
+          }"
+        >
+          {{ item.name }}
+        </div>
+        <div class="max-w-[200px] min-w-[80px] break-all text-sm">
+          {{ item.message }}
+        </div>
+        <div
+          class="w-full flex flex-row px-1 h-4 items-center"
+          [ngClass]="{
+            'justify-between': item.uid === uid,
+            'justify-end': item.uid != uid
+          }"
+        >
+          <button
+            [disabled]="item.uid != uid"
+            (click)="deleteMessage(item)"
+            [ngClass]="{
+              'order-last': item.uid === uid,
+              hidden: item.uid != uid
+            }"
+            type="button"
+            class="messages__delete text-red-700 hover:text-red-500 transition-all duration-300"
+          >
+            <i class="bi bi-trash2-fill"></i>
+          </button>
+          <div class="messages__date text-xs">
+            {{ item.date | time }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

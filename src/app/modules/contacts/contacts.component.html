@@ -1,0 +1,88 @@
+<div
+  class="flex flex-col h-full w-full text-white justify-center items-center py-8 overflow-hidden"
+>
+  <div class="flex flex-col lg:flex-row">
+    <button
+      class="capitalize flex flex-col lg:flex-row items-center transition-button relative"
+      *ngFor="let contact of contacts; let idx = index"
+      [ngClass]="{
+        '-translate-x-[80%] lg:-translate-x-[0px] lg:-translate-y-[120px]':
+          activeLink === contact.service
+      }"
+    >
+      <div
+        *ngIf="idx != 0"
+        [ngClass]="{
+          'scale-0':
+            idx != contacts.length - 1 && activeLink === contact.service,
+          'shadow-neon-red': neonState
+        }"
+        class="h-9 lg:h-1 w-1 lg:w-9 transition-button"
+        [style.background]="bgRed"
+      ></div>
+      <div
+        (click)="toggleLink(contact.service)"
+        [ngClass]="{ 'shadow-neon-red': neonState }"
+        class="inline-block rounded-2xl p-4 lg:p-6 transition-all duration-500 border-[5px] border-solid"
+        [style.border-color]="bgRedShadow"
+        [style.background]="bgBlue"
+      >
+        <div class="w-[64px] h-[64px]">
+          <img
+            class="transition-button grayscale-0 w-full h-full"
+            [ngClass]="{
+              grayscale: activeLink === contact.service
+            }"
+            [src]="'../../../assets/img/contacts/' + contact.img + '.png'"
+            [alt]="contact.img"
+          />
+        </div>
+      </div>
+      <div
+        *ngIf="idx != contacts.length - 1"
+        [ngClass]="{
+          'scale-0 lg:scale-100': idx != 0 && activeLink === contact.service,
+          'shadow-neon-red': neonState
+        }"
+        class="h-9 lg:h-1 w-1 lg:w-9 transition-button"
+        [style.background]="bgRed"
+      ></div>
+      <div
+        class="absolute top-1/2 -translate-y-1/2 flex flex-row items-center gap-x-2"
+        [ngClass]="{
+          'left-[130%] lg:-left-[60%]': idx === contacts.length - 1,
+          'left-[129%] lg:left-[110%]': idx != contacts.length - 1
+        }"
+        [@toggleLink]="activeLink === contact.service ? 'open' : 'closed'"
+      >
+        <button
+          [cdkCopyToClipboard]="contact.localLink"
+          (cdkCopyToClipboardCopied)="onClipboardCopy($event)"
+        >
+          <span
+            class="material-icons !text-3xl hover:text-[#00c3ff] transition-all duration-300 border-2 border-solid rounded-lg"
+            [style.background]="bgBlue"
+            [style.border-color]="bgLink"
+            *ngIf="!isCopied"
+            >add_link</span
+          >
+          <span
+            class="material-icons text-green-500 !text-3xl hover:text-[#00c3ff] transition-all duration-300 border-2 border-solid rounded-lg"
+            [style.background]="bgBlue"
+            [style.border-color]="bgLink"
+            *ngIf="isCopied"
+            >done</span
+          >
+        </button>
+        <a class="" [href]="contact.link" target="_blank">
+          <span
+            class="material-icons !text-3xl hover:text-[#00c3ff] transition-all duration-300 border-2 border-solid rounded-lg"
+            [style.background]="bgBlue"
+            [style.border-color]="bgLink"
+            >arrow_outward</span
+          ></a
+        >
+      </div>
+    </button>
+  </div>
+</div>

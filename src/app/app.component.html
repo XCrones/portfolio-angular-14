@@ -1,0 +1,23 @@
+<div class="min-h-screen flex flex-col bg-[#1f2738] relative">
+  <header *ngIf="!isHideHeader" class="flex-[0_1_80px] h-full flex">
+    <div class="min-h-full min-w-full flex-auto">
+      <app-header></app-header>
+    </div>
+  </header>
+  <main
+    appBoxNeon
+    [boxShadowColor]="mainColor"
+    [boxStyleShadow]="'medium'"
+    [bIsNeonEnable]="neonState"
+    class="flex-auto m-[10px] rounded-[5px] overflow-hidden main-bg transition-all duration-500 flex"
+  >
+    <div class="min-h-full min-w-full flex-auto">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+  <footer class="flex-[0_1_40px] h-full flex">
+    <div class="min-h-full min-w-full flex-auto">
+      <app-footer></app-footer>
+    </div>
+  </footer>
+</div>

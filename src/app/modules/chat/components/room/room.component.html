@@ -1,0 +1,158 @@
+<div class="h-full flex flex-col scroll">
+  <div
+    class="flex-[0_0_40px] flex flex-row justify-between items-center bg-cyan-800 rounded-tl-lg rounded-tr-lg p-3"
+  >
+    <div class="relative h-full">
+      <button
+        (click)="toggleProfile()"
+        type="button"
+        class="btn-profile min-w-[100px] h-full capitalize py-1 px-2 rounded-t-md bg-sky-700 hover:bg-sky-500 transition-all duration-300"
+        [ngClass]="{
+          'rounded-b-md ': isHideProfile,
+          'bg-sky-600': !isHideProfile,
+          grayscale: isLoad
+        }"
+      >
+        {{ userName }}
+        <span
+          [ngClass]="{ 'rotate-180': !isHideProfile }"
+          class="inline-block transition-all duration-200"
+        >
+          <i class="bi bi-caret-down-fill"></i
+        ></span>
+      </button>
+      <div
+        [@profile]="isHideProfile ? 'hide' : 'show'"
+        class="absolute top-full left-0 bg-sky-700 flex flex-col gap-y-1 py-1 z-10 last:rounded-b-lg"
+      >
+        <button
+          (click)="create()"
+          type="button"
+          class="btn-create capitalize hover:bg-teal-500 transition-all duration-300 text-left p-1"
+        >
+          создать
+        </button>
+        <button
+          (click)="join()"
+          type="button"
+          class="btn-join capitalize hover:bg-teal-500 transition-all duration-300 text-left p-1"
+        >
+          присоединится
+        </button>
+        <div class="text-center hover:bg-sky-500 transition-all duration-300">
+          <div
+            class="menu text-center relative flex flex-row gap-x-2 justify-between items-center p-1"
+          >
+            <div class="capitalize">чаты</div>
+            <div class=""><i class="bi bi-caret-right-fill"></i></div>
+            <ul
+              *ngIf="chats.length > 0"
+              class="menu__submenu absolute top-0 left-full flex flex-col w-full bg-sky-700 capitalize"
+            >
+              <li
+                class="hover:bg-sky-500 flex flex-row justify-between my-1 p-1"
+                [ngClass]="{ 'bg-teal-500': chat === currChat }"
+                *ngFor="let chat of chats"
+              >
+                <button
+                  type="button"
+                  class="btn-join-chat capitalize w-full text-left"
+                  (click)="setCurrChat(chat)"
+                >
+                  {{ chat }}
+                </button>
+                <div class="flex-[0_1_25%] bg-purple-500 rounded">
+                  <button
+                    (click)="outChat(chat)"
+                    type="button"
+                    class="btn-out-chat text-red-600 hover:text-red-400"
+                  >
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+              </li>
+            </ul>
+            <div
+              *ngIf="chats.length < 1"
+              class="menu__submenu absolute top-0 left-full w-full whitespace-nowrap bg-sky-700 first-letter:uppercase"
+            >
+              пусто
+            </div>
+          </div>
+        </div>
+        <button
+          (click)="signOut()"
+          type="button"
+          class="btn-signout capitalize hover:bg-red-500 transition-all duration-300 text-left p-1"
+        >
+          выйти
+        </button>
+      </div>
+    </div>
+    <div class="flex flex-row gap-x-3 items-center justify-center">
+      <h3 class="first-letter:uppercase min-w-[50px] text-center">
+        {{ currChat }}
+      </h3>
+      <div class="h-6 w-6">
+        <img
+          [ngClass]="{ grayscale: currChat === undefined }"
+          class="h-full w-full"
+          [src]="'../../../../../assets/img/chat/icon-room.png'"
+          [alt]="'chat'"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    #messagesItems
+    class="messages flex-[0_0_365px] overflow-y-auto relative h-full"
+  >
+    <app-messages></app-messages>
+    <div
+      *ngIf="isLoad"
+      class="absolute top-0 left-0 w-full h-full flex justify-center items-center"
+    >
+      <div class="w-32 h-32 z-[2]">
+        <img
+          class="w-full h-full"
+          [src]="'../../../../../assets/img/load-chat.svg'"
+          [alt]="'load'"
+        />
+      </div>
+    </div>
+    <div
+      *ngIf="currChat === undefined"
+      class="absolute top-0 left-0 w-full h-full bg-[#6964649c] flex justify-center items-center"
+    >
+      <span *ngIf="!isLoad" class="first-letter:uppercase">чат не выбран</span>
+    </div>
+  </div>
+  <form
+    class="flex-[0_0_64px] flex flex-row gap-x-3 items-center bg-cyan-800 rounded-bl-lg rounded-br-lg overflow-hidden p-2"
+    [formGroup]="messageForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="flex-auto flex w-full">
+      <textarea
+        class="text-black w-full h-full p-2 rounded-lg resize-none"
+        [rows]="textAreaRows"
+        (keyup)="onKeyUp($event)"
+        [maxLength]="messageLength.max"
+        formControlName="message"
+      ></textarea>
+    </div>
+    <button
+      class="btn-submit text-2xl transition-all duration-300"
+      [ngClass]="{ 'text-slate-400': currChat === undefined }"
+      [disabled]="currChat === undefined"
+      appTextNeon
+      [textColorShadow]="'#fff'"
+      [textStyleShadow]="'medium'"
+      [tIsNeonEnable]="neonState"
+      [textHover]="true"
+      type="submit"
+    >
+      <i class="bi bi-send-fill"></i>
+    </button>
+  </form>
+</div>

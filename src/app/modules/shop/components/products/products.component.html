@@ -1,0 +1,114 @@
+<div class="w-full h-full border-separate border-spacing-y-2 relative">
+  <div class="h-full w-full flex flex-col gap-y-4 sm:flex-row">
+    <div
+      class="flex-auto flex flex-row flex-wrap gap-3 justify-center items-center"
+    >
+      <div
+        [@show]="'item'"
+        class="flex-[0_1_290px] h-44 flex flex-col justify-between p-2 rounded-lg bg-white text-black"
+        *ngFor="let product of parseProducts() | filter: search"
+      >
+        <div class="flex flex-row h-full gap-x-2 justify-between items-center">
+          <div
+            class="flex-[0_1_50%] h-full flex flex-col gap-y-2 justify-evenly"
+          >
+            <div class="underline underline-offset-4 font-bold">
+              {{ product.price | currency: "USD ":"code" }}
+            </div>
+            <div class="font-semibold first-letter:uppercase text-xs">
+              {{
+                product.title.length > 50
+                  ? (product.title | slice: 0:50) + "..."
+                  : product.title
+              }}
+            </div>
+            <div
+              class="flex flex-row items-center justify-center gap-x-1 text-md"
+            >
+              <div class="capitalize flex-[0_1_50%]">rate:</div>
+              <div
+                class="relative border border-solid border-slate-500 h-3 w-full flex-auto rounded-sm"
+              >
+                <div
+                  class="h-full absolute"
+                  [ngStyle]="{ width: calcRate(product.rating.rate) + '%' }"
+                  [ngClass]="{
+                    'bg-red-600': product.rating.rate < 1.6,
+                    'bg-yellow-600':
+                      product.rating.rate >= 1.6 && product.rating.rate < 3.2,
+
+                    'bg-green-600': product.rating.rate >= 3.2
+                  }"
+                ></div>
+                <div
+                  class="absolute top-1/2 left-1/3 h-full w-[2px] bg-slate-500 -translate-y-1/2 -translate-x-1/2"
+                ></div>
+                <div
+                  class="absolute top-1/2 left-2/3 h-full w-[2px] bg-slate-500 -translate-y-1/2 -translate-x-1/2"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex-[0_1_50%] h-[100px] flex justify-center items-center overflow-hidden"
+          >
+            <img
+              class="max-w-full max-h-full"
+              [src]="product.image"
+              [alt]="'image'"
+            />
+          </div>
+        </div>
+        <div class="flex flex-row items-center gap-x-2">
+          <div class="flex-[0_1_50%] text-center">
+            <button
+              (click)="addCart(product)"
+              type="button"
+              class="btn-buy bg-green-800 w-full h-7 text-white hover:bg-green-500 rounded-md transition-all duration-300"
+              *ngIf="!isInCart(product.id)"
+            >
+              купить
+            </button>
+            <button
+              (click)="showCart()"
+              type="button"
+              class="btn-cart bg-orange-700 w-full h-7 text-white hover:bg-orange-500 rounded-md transition-all duration-300"
+              *ngIf="isInCart(product.id)"
+            >
+              в корзине
+            </button>
+          </div>
+          <div class="flex-[0_1_50%] text-center">
+            <button
+              (click)="isHidePopup(product)"
+              type="button"
+              class="btn-about bg-sky-800 w-full h-7 text-white hover:bg-sky-500 rounded-md transition-all duration-300"
+            >
+              подробнее
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-row sm:flex-col justify-center items-center gap-1"
+      *ngIf="!isSearch"
+    >
+      <button
+        type="button"
+        class="btn-page border-0 bg-gray-600 w-7 h-7 text-center rounded-sm transition-all duration-300 flex justify-center items-center"
+        [ngClass]="{ 'link-active': paginator.isEqualPage(idx) }"
+        *ngFor="let page of paginator.pages(productsV2); let idx = index"
+        (click)="paginator.setCurrPage(idx)"
+      >
+        {{ idx + 1 }}
+      </button>
+    </div>
+  </div>
+  <div
+    *ngIf="productsV2.length === 0"
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
+  >
+    <img [src]="pathload" alt="load" />
+  </div>
+</div>

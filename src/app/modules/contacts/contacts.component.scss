@@ -1,0 +1,9 @@
+@import "../../../variables.scss";
+
+.transition-button {
+  @include transition-shadow(0.4);
+}
+
+.shadow-neon-red {
+  @include neon-shadow-box-medium($color-red-shadow);
+}

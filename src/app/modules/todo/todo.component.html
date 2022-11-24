@@ -1,0 +1,29 @@
+<div class="h-full w-full flex flex-col px-2 lg:px-9 pb-3">
+  <app-menu-project [styleMenu]="metaMenu"></app-menu-project>
+  <div class="h-full w-full flex flex-col gap-y-2 lg:gap-y-5 relative">
+    <div class="flex-auto">
+      <app-panel></app-panel>
+    </div>
+    <div class="flex-auto h-full w-full">
+      <app-table></app-table>
+    </div>
+    <div
+      [@openClose]="!isHideModal ? 'popupShow' : 'popupHide'"
+      class="absolute top-0 left-0 w-full h-full bg-[#29557979] z-20"
+    >
+      <app-modal></app-modal>
+    </div>
+    <div
+      [@openClose]="!isHidePopup ? 'popupShow' : 'popupHide'"
+      class="absolute top-0 left-0 w-full h-full bg-[#29557979] z-20"
+    >
+      <app-popup></app-popup>
+    </div>
+    <div
+      [@openClose]="!isHideInfo ? 'popupShow' : 'popupHide'"
+      class="absolute top-0 left-0 w-full h-full bg-[#29557979] z-20"
+    >
+      <app-info-project [info]="aboutData"></app-info-project>
+    </div>
+  </div>
+</div>

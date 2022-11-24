@@ -1,0 +1,51 @@
+@import "../../../variables.scss";
+
+.material-icons {
+  font-size: 25px;
+  height: 25px;
+  width: 25px;
+}
+
+.fonts {
+  font-family: "Fjalla One", sans-serif;
+}
+
+.title-shadow {
+  @include neon-shadow-box-light(#00c3ff);
+}
+
+.flicker {
+  animation: flicker 3.8s infinite alternate;
+}
+
+.toggle-hamburger .hambuger-line-1 {
+  transform: translate(0, 12px) rotate(-45deg);
+}
+
+.toggle-hamburger .hambuger-line-2 {
+  scale: 0;
+}
+
+.toggle-hamburger .hambuger-line-3 {
+  transform: translate(0, -12px) rotate(45deg);
+}
+
+@keyframes flicker {
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% {
+    @include neon-shadow-text-light(#0fa);
+    color: #0fa;
+  }
+
+  20%,
+  80%,
+  55% {
+    text-shadow: none;
+    color: #fff;
+  }
+}

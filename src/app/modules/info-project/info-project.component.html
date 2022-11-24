@@ -1,0 +1,57 @@
+<div
+  class="absolute top-0 md:-translate-y-1/4 left-1/2 -translate-x-1/2 w-full sm:w-3/5 lg:w-2/5 xl:w-2/5 bg-[rgba(31,39,56,0.98)] rounded-2xl"
+>
+  <div class="h-full w-full flex flex-col p-2 gap-y-1">
+    <div class="flex flex-row">
+      <div
+        class="flex-auto h-full w-full text-center first-letter:uppercase text-sm sm:text-base"
+      >
+        представляю вам проект:
+        <div class="underline underline-offset-4 block sm:inline-block">
+          "{{ nameProject }}"
+        </div>
+      </div>
+      <div class="flex-[0_1_40px]">
+        <button
+          appTextNeon
+          [textColorShadow]="'#fff'"
+          [textStyleShadow]="'medium'"
+          [tIsNeonEnable]="neonState"
+          [textHover]="true"
+          (click)="close()"
+          type="button"
+          class="w-full h-full flex justify-center items-center transition-all duration-500 text-2xl"
+        >
+          <i class="bi bi-x-octagon"></i>
+        </button>
+      </div>
+    </div>
+    <div class="fonts">
+      <div class="" *ngFor="let value of tempData">
+        <div class="flex flex-row pl-1 gap-x-1 items-center">
+          <div class="text-xs">
+            <i class="bi bi-circle-fill text-sky-500"></i>
+          </div>
+          <div class="first-letter:uppercase text-[15px] sm:text-[16px]">
+            {{ value.title
+            }}<span class="" *ngIf="value?.subtitle">&nbsp;:</span>
+            <span class="" *ngIf="!value?.subtitle">.</span>
+          </div>
+        </div>
+        <div class="leading-4 flex flex-col gap-y-0.5">
+          <div
+            class="flex flex-row pl-5 gap-x-1 items-center"
+            *ngFor="let subtitle of value.subtitle"
+          >
+            <div class="text-xs">
+              <i class="bi bi-circle-fill text-green-500"></i>
+            </div>
+            <div class="flex-auto text-[15px] sm:text-[16px]">
+              {{ subtitle }}&nbsp;;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

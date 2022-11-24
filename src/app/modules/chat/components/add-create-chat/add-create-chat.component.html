@@ -1,0 +1,111 @@
+<form
+  class="h-full w-full flex flex-col justify-center gap-y-3 p-2 relative"
+  [formGroup]="nameForm"
+  (ngSubmit)="onSubmit()"
+>
+  <div
+    *ngIf="isLoad"
+    class="absolute top-0 left-0 h-full w-full bg-[#bdb5b556] overflow-hidden"
+  >
+    <div class="h-full w-full relative load">
+      <div
+        appBoxNeon
+        [boxShadowColor]="'#ff0000'"
+        [boxStyleShadow]="'medium'"
+        [bIsNeonEnable]="neonState"
+      ></div>
+      <div
+        appBoxNeon
+        [boxShadowColor]="'#008000'"
+        [boxStyleShadow]="'medium'"
+        [bIsNeonEnable]="neonState"
+      ></div>
+      <div
+        appBoxNeon
+        [boxShadowColor]="'#0000ff'"
+        [boxStyleShadow]="'medium'"
+        [bIsNeonEnable]="neonState"
+      ></div>
+    </div>
+  </div>
+  <h2 class="capitalize text-xl text-center w-full">
+    <ng-content select="[nameForm]"></ng-content>
+  </h2>
+  <div class="flex flex-col gap-y-2">
+    <label class="first-letter:uppercase text-sm text-center">имя чата:</label>
+    <input
+      class="text-black px-2 py-1 rounded-lg overflow-hidden text-sm text-center"
+      [maxlength]="nameLength.max"
+      type="text"
+      formControlName="name"
+    />
+    <div
+      class="text-sm text-white w-full text-center"
+      *ngIf="nameControl.errors?.['minlength'] && nameControl.touched"
+    >
+      min length:
+      {{ nameControl.errors?.['minlength'].requiredLength }}, left:
+      {{ nameControl.errors?.['minlength'].requiredLength - nameControl.errors?.['minlength'].actualLength }}
+    </div>
+    <div
+      class="test text-sm text-white w-full text-center"
+      *ngIf="nameControl.errors?.['maxlength'] && nameControl.touched"
+    >
+      max length:
+      {{ nameControl.errors?.['maxlength'].requiredLength }}, delete:
+      {{ nameControl.errors?.['maxlength'].actualLength - nameControl.errors?.['maxlength'].requiredLength }}
+      char(s)
+    </div>
+    <div
+      class="text-sm text-white w-full text-center"
+      *ngIf="nameControl.errors?.['required'] && nameControl.touched"
+    >
+      required field
+    </div>
+    <div
+      class="text-xs text-white text-center first-letter:uppercase"
+      *ngIf="responseErr.length > 0"
+    >
+      {{ responseErr }}.&nbsp;
+      <button
+        *ngIf="isCreate"
+        (click)="createChat()"
+        type="button"
+        class="btn-iscreate capitalize text-orange-500 hover:text-orange-400"
+      >
+        создать?
+      </button>
+      <button
+        *ngIf="isJoin"
+        (click)="joinChat()"
+        type="button"
+        class="btn-isjoin capitalize text-orange-500 hover:text-orange-400"
+      >
+        присоединится?
+      </button>
+    </div>
+  </div>
+  <div class="flex flex-row justify-around gap-x-2 items-center">
+    <button
+      type="submit"
+      class="btn-submit flex flex-row gap-x-2 items-center justify-between bg-green-700 py-1 px-2 hover:bg-green-500 rounded-md transition-all duration-300 w-1/2"
+    >
+      <div class="capitalize text-xs sm:text-sm">
+        <ng-content select="[btnSubmit]"></ng-content>
+      </div>
+      <div class="">
+        <i class="bi bi-check-square text-sm sm:text-xl"></i>
+      </div>
+    </button>
+    <button
+      type="button"
+      (click)="cancel()"
+      class="btn-cancel flex flex-row gap-x-2 items-center justify-between bg-red-700 hover:bg-red-500 py-1 px-2 rounded-md transition-all duration-300 w-1/2"
+    >
+      <div class="capitalize text-xs sm:text-sm">отмена</div>
+      <div class="">
+        <i class="bi bi-x-square text-sm sm:text-xl"></i>
+      </div>
+    </button>
+  </div>
+</form>

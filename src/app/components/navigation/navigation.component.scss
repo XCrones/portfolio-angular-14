@@ -1,0 +1,8 @@
+@import "../../../variables.scss";
+
+.active-link {
+  color: $color-red-link;
+}
+.shadow-red .active-link {
+  @include neon-shadow-text-light($color-red-shadow);
+}

@@ -1,0 +1,97 @@
+<form
+  class="h-full w-full flex flex-col justify-center gap-y-3"
+  [formGroup]="signUpForm"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="flex flex-row justify-between items-center gap-x-1">
+    <h2 class="capitalize text-xl text-center flex-auto">регистрация</h2>
+    <button
+      appTextNeon
+      [textColorShadow]="'#fff'"
+      [textStyleShadow]="'medium'"
+      [tIsNeonEnable]="neonState"
+      [textHover]="true"
+      type="button"
+      class="btn-close text-xl transition-all duration-300"
+      (click)="closeProfile()"
+    >
+      <ng-content></ng-content>
+    </button>
+  </div>
+  <div class="flex flex-col gap-y-1">
+    <label for="email" class="capitalize text-sm">email: </label>
+    <input
+      (blur)="onBlur()"
+      (focus)="onFocus()"
+      id="email"
+      type="email"
+      formControlName="email"
+      class="text-black px-2 py-1 rounded-lg overflow-hidden text-sm"
+    />
+    <div
+      class="text-xs text-white text-center first-letter:uppercase"
+      *ngIf="emailControl.errors?.['required'] && emailControl.touched"
+    >
+      required field
+    </div>
+    <div
+      class="text-xs text-white text-center first-letter:uppercase"
+      *ngIf="emailControl.errors?.['email'] && emailControl.touched"
+    >
+      email is invalid
+    </div>
+    <div
+      class="text-xs text-white text-center first-letter:uppercase"
+      *ngIf="response.length > 0"
+    >
+      {{ response }}
+    </div>
+  </div>
+  <div class="flex flex-col gap-y-1">
+    <label for="pass1" class="capitalize text-sm">password: </label>
+    <input
+      [maxlength]="length.max"
+      id="pass1"
+      type="password"
+      formControlName="password"
+      class="text-black px-2 py-1 rounded-lg overflow-hidden text-sm"
+    />
+    <div
+      class="text-xs text-white text-center first-letter:uppercase"
+      *ngIf="passwordControl.errors?.['required'] && passwordControl.touched"
+    >
+      required field
+    </div>
+    <div
+      class="text-xs text-white text-center"
+      *ngIf="passwordControl.errors?.['minlength'] && passwordControl.touched"
+    >
+      length: {{ passwordControl.errors?.['minlength'].requiredLength}}, left:
+      {{ passwordControl.errors?.['minlength'].requiredLength - passwordControl.errors?.['minlength'].actualLength }}
+    </div>
+  </div>
+  <div class="w-full">
+    <button
+      [disabled]="isDisableSubmit"
+      type="submit"
+      class="btn-submit capitalize w-full p-1 transition-all duration-300"
+      [ngClass]="{
+        'bg-sky-700 hover:bg-sky-500': !isDisableSubmit,
+        'bg-slate-500 cursor-not-allowed': isDisableSubmit
+      }"
+    >
+      отправить
+    </button>
+  </div>
+  <div class="flex flex-row items-center justify-center gap-x-1">
+    <span class="first-letter:uppercase">есть аккаунт?</span>
+    <button
+      (click)="toggleForm()"
+      type="button"
+      class="btn-toggle flex flex-row gap-x-2 hover:text-sky-500 transition-all duration-300"
+    >
+      <div class="capitalize">вход</div>
+      <i class="bi bi-arrow-right-square"></i>
+    </button>
+  </div>
+</form>

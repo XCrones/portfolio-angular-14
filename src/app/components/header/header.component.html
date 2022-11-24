@@ -1,0 +1,62 @@
+<div class="px-2 md:px-3 xl:px-4 h-full w-full relative z-50">
+  <div
+    class="h-full w-full flex flex-row justify-between items-center text-white fonts"
+  >
+    <div
+      [ngClass]="{ 'title-shadow ': neon }"
+      class="flicker transition-all duration-500 tracking-[1px] text-xl md:text-2xl capitalize px-3 py-[2px] border-solid border-2 border-[#00c3ff] rounded-lg"
+    >
+      anydea
+    </div>
+
+    <div class="flex-auto h-full w-full hidden md:block">
+      <app-navigation [neonState]="neon"></app-navigation>
+    </div>
+
+    <div class="">
+      <button
+        appTextNeon
+        [textColorShadow]="'#fff'"
+        [textStyleShadow]="'medium'"
+        [textColor]="'#fff'"
+        [textSetColor]="true"
+        [tIsNeonEnable]="neon"
+        class="btn-neon border-[3px] border-white w-[70px] h-9 relative rounded-2xl overflow-hidden"
+        (click)="toggleNeon()"
+      >
+        <i
+          class="material-icons absolute top-1/2 left-0 -translate-y-1/2 transition-all ease-in duration-150"
+          [ngClass]="{ 'left-[80%] -translate-x-1/2': !neon }"
+          >{{ neon | iconNeon }}</i
+        >
+      </button>
+    </div>
+
+    <div class="md:hidden">
+      <button
+        (click)="toggleHamburger()"
+        class="btn-hambr flex flex-col gap-y-2 relative"
+        [ngClass]="{ 'toggle-hamburger': hamburger }"
+      >
+        <div
+          [ngClass]="{ 'title-shadow ': neon }"
+          class="h-1 w-10 bg-white hambuger-line-1 transition-all duration-300"
+        ></div>
+        <div
+          [ngClass]="{ 'title-shadow ': neon }"
+          class="h-1 w-10 bg-white hambuger-line-2 transition-all duration-300"
+        ></div>
+        <div
+          [ngClass]="{ 'title-shadow ': neon }"
+          class="h-1 w-10 bg-white hambuger-line-3 transition-all duration-300"
+        ></div>
+      </button>
+    </div>
+  </div>
+  <div
+    [@openClose]="hamburger ? 'open' : 'closed'"
+    class="absolute top-full -left-0 -right-0 h-full md:hidden bg-[#1f2738]"
+  >
+    <app-navigation [neonState]="neon"></app-navigation>
+  </div>
+</div>
