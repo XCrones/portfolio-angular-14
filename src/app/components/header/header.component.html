@@ -3,10 +3,32 @@
     class="h-full w-full flex flex-row justify-between items-center text-white fonts"
   >
     <div
-      [ngClass]="{ 'title-shadow ': neon }"
-      class="flicker transition-all duration-500 tracking-[1px] text-xl md:text-2xl capitalize px-3 py-[2px] border-solid border-2 border-[#00c3ff] rounded-lg"
+      [ngClass]="{ 'title-shadow': neon }"
+      class="project transition-all duration-500 tracking-[1px] text-xl md:text-2xl capitalize px-3 py-[2px] border-solid border-t-2 border-x-2 border-b-2 border-[#00c3ff] rounded-t-lg rounded-b-lg hover:rounded-b-none relative"
     >
-      anydea
+      <div class="project__title flicker transition-all duration-200">
+        anydea
+      </div>
+      <div
+        [ngClass]="{ 'title-shadow': neon }"
+        class="project__items absolute top-full left-0 w-full flex flex-col gap-y-2 bg-main-bg border-2 border-solid border-[#00c3ff] rounded-bl-lg rounded-br-lg transition-all duration-200"
+      >
+        <a
+          [attr.href]="getlink(project)"
+          *ngFor="let project of projects"
+          class="text-center transition-all duration-200"
+          [ngClass]="{ 'cursor-not-allowed': isCurrFramework(project.title) }"
+          appTextNeon
+          [textColorShadow]="getColor(project.title)"
+          [textStyleShadow]="'medium'"
+          [textColor]="getColor(project.title)"
+          [textSetColor]="true"
+          [tIsNeonEnable]="neon"
+          [textHover]="true"
+        >
+          {{ project.title }}
+        </a>
+      </div>
     </div>
 
     <div class="flex-auto h-full w-full hidden md:block">

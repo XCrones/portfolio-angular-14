@@ -1,5 +1,25 @@
 @import "../../../variables.scss";
 
+.project {
+  &:hover {
+    .project__title {
+      opacity: 0;
+    }
+    .project__items {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+
+  &__title {
+  }
+
+  &__items {
+    scale: 0;
+    opacity: 0;
+  }
+}
+
 .material-icons {
   font-size: 25px;
   height: 25px;
