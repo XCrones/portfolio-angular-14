@@ -48,6 +48,6 @@ export class AppComponent {
     return this._neonService.isEnable();
   }
   get mainColor(): string {
-    return this._shadowService.mainShadowRed;
+    return this._shadowService.colorRedShadow;
   }
 }

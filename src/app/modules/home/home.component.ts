@@ -91,9 +91,9 @@ export class HomeComponent implements OnInit {
     return this._aboutMeService.aboutMe;
   }
   get colorRed(): string {
-    return this._shadowService.mainShadowRed;
+    return this._shadowService.colorRedShadow;
   }
   get colorRedNeon(): string {
-    return this._shadowService.mainShadowRedLink;
+    return this._shadowService.colorRedNeon;
   }
 }

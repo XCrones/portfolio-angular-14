@@ -72,10 +72,10 @@ export class ContactsComponent implements OnInit {
     return this._neonService.isEnable();
   }
   get bgRed(): string {
-    return this._shadowService.mainShadowRedLink;
+    return this._shadowService.colorRedNeon;
   }
   get bgRedShadow(): string {
-    return this._shadowService.mainShadowRed;
+    return this._shadowService.colorRedShadow;
   }
   get bgBlue(): string {
     return this._bgBlue;

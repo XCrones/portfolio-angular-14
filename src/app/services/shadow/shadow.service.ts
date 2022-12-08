@@ -6,8 +6,6 @@ import { Injectable } from '@angular/core';
 export class ShadowService {
   constructor() {}
 
-  private _mainShadowRedLink: string = '#ff2121';
-  private _mainShadowRed: string = '#ff3c00';
   private _greenNeon = '#00ff84';
   private _greenShadow = '#0fa';
   private _redNeon = '#ff2121';
@@ -15,14 +13,9 @@ export class ShadowService {
   private _blueNeon = '#214aff';
   private _blueShadow = '#0051ff';
 
-  get mainShadowRedLink(): string {
-    return this._mainShadowRedLink;
   get colorNeonGreen(): string {
     return this._greenNeon;
   }
-
-  get mainShadowRed(): string {
-    return this._mainShadowRed;
   get colorGreen(): string {
     return this._greenShadow;
   }
