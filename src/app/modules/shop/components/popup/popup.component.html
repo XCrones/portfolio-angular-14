@@ -22,7 +22,7 @@
       class="flex flex-row gap-x-3 items-center bg-white text-black p-2 rounded-lg"
     >
       <div class="flex-[0_1_30%]">
-        <div class="w-[100px] h-[100px]">
+        <div class="w-[100px] h-[100px] flex justify-center items-center">
           <img
             class="max-w-full max-h-full"
             [src]="product.image"
@@ -111,7 +111,7 @@
       </div>
       <div class="flex-[0_1_50%] text-center">
         <div class="price border border-solid border-white rounded-md">
-          {{ product.price | currency: "USD ":"code" }}
+          {{ product.price | currency : "USD " : "code" }}
         </div>
       </div>
     </div>
