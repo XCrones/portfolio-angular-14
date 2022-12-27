@@ -14,7 +14,6 @@
         class="project__items absolute top-full left-0 w-full flex flex-col gap-y-2 bg-main-bg border-2 border-solid border-[#00c3ff] rounded-bl-lg rounded-br-lg transition-all duration-200"
       >
         <a
-          [attr.href]="getlink(project)"
           *ngFor="let project of projects"
           class="text-center transition-all duration-200"
           [ngClass]="{ 'cursor-not-allowed': isCurrFramework(project.title) }"
@@ -25,6 +24,7 @@
           [textSetColor]="true"
           [tIsNeonEnable]="neon"
           [textHover]="true"
+          [attr.href]="getlink(project)"
         >
           {{ project.title }}
         </a>

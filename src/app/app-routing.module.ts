@@ -8,18 +8,75 @@ import { ProjectsComponent } from './modules/projects/projects.component';
 import { ShopComponent } from './modules/shop/shop.component';
 import { TodoComponent } from './modules/todo/todo.component';
 
+export interface IRouterLinkItem {
+  link: string;
+  title: string;
+}
+
+interface IRouterLinks {
+  home: IRouterLinkItem;
+  projects: {
+    link: string;
+    title: string;
+    children: {
+      todo: IRouterLinkItem;
+      shop: IRouterLinkItem;
+      chat: IRouterLinkItem;
+    };
+  };
+  contacts: IRouterLinkItem;
+}
+
+export const ROUTER_LINKS: IRouterLinks = {
+  home: {
+    link: '',
+    title: 'главная',
+  },
+  projects: {
+    link: 'projects',
+    title: 'проекты',
+    children: {
+      todo: {
+        link: 'todo',
+        title: 'todo',
+      },
+      shop: {
+        link: 'shop',
+        title: 'shop',
+      },
+      chat: {
+        link: 'chat',
+        title: 'chat',
+      },
+    },
+  },
+  contacts: {
+    link: 'contacts',
+    title: 'контакты',
+  },
+};
+
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: ROUTER_LINKS.home.link, component: HomeComponent },
   {
-    path: 'projects',
+    path: ROUTER_LINKS.projects.link,
     component: ProjectsComponent,
     children: [
-      { path: 'todo', component: TodoComponent },
-      { path: 'shop', component: ShopComponent },
-      { path: 'chat', component: ChatComponent },
+      {
+        path: ROUTER_LINKS.projects.children.todo.link,
+        component: TodoComponent,
+      },
+      {
+        path: ROUTER_LINKS.projects.children.shop.link,
+        component: ShopComponent,
+      },
+      {
+        path: ROUTER_LINKS.projects.children.chat.link,
+        component: ChatComponent,
+      },
     ],
   },
-  { path: 'contacts', component: ContactsComponent },
+  { path: ROUTER_LINKS.contacts.link, component: ContactsComponent },
   {
     path: '**',
     pathMatch: 'full',
