@@ -66,8 +66,8 @@ describe('PopupComponent', () => {
 
   const mockPaginatorV2Service = jasmine.createSpyObj([
     'init',
-    'isEqualPage',
-    'setCurrPage',
+    'isCurrentPage',
+    'jumpPage',
     'pages',
     'parse',
   ]);

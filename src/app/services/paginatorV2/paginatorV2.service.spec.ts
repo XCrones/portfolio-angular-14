@@ -37,13 +37,13 @@ describe('PaginatorV2Service', () => {
     expect(parse).toEqual([1, 2, 3, 4]);
   });
 
-  it('isEqualPage(0) => must return true', () => {
-    const isEqual = service.isEqualPage(0);
+  it('isCurrentPage(0) => must return true', () => {
+    const isEqual = service.isCurrentPage(0);
     expect(isEqual).toBeTruthy();
   });
 
-  it('setCurrPage(2) => isEqualPage(2) must return true', () => {
-    service.setCurrPage(2);
-    expect(service.isEqualPage(2)).toBeTruthy();
+  it('jumpPage(2) => isCurrentPage(2) must return true', () => {
+    service.jumpPage(2);
+    expect(service.isCurrentPage(2)).toBeTruthy();
   });
 });

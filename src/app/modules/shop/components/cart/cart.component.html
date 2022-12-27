@@ -46,7 +46,7 @@
         <div class="font-semibold first-letter:uppercase text-sm">
           {{
             item.product.title.length > titleLength
-              ? (item.product.title | slice: 0:titleLength) + "..."
+              ? (item.product.title | slice : 0 : titleLength) + "..."
               : item.product.title
           }}
         </div>
@@ -81,7 +81,7 @@
             </button>
           </div>
           <div class="font-semibold text-xs leading-6 sm:text-base">
-            {{ item.count * item.product.price | currency: "USD ":"code" }}
+            {{ item.count * item.product.price | currency : "USD " : "code" }}
           </div>
         </div>
       </div>
@@ -103,10 +103,10 @@
   </div>
   <div class="flex flex-row justify-center items-center gap-1">
     <button
-      (click)="paginator.setCurrPage(idx)"
+      (click)="paginator.jumpPage(idx)"
       type="button"
       class="btn-page border-0 bg-gray-600 w-7 h-7 text-center rounded-sm transition-all duration-300 flex justify-center items-center"
-      [ngClass]="{ 'link-active': paginator.isEqualPage(idx) }"
+      [ngClass]="{ 'link-active': paginator.isCurrentPage(idx) }"
       *ngFor="let page of paginator.pages(cart); let idx = index"
     >
       {{ idx + 1 }}
@@ -128,7 +128,7 @@
     </div>
     <div class="flex-[0_1_50%] text-center">
       <div class="border border-solid border-white rounded-md">
-        {{ totalPrice | currency: "USD ":"code" }}
+        {{ totalPrice | currency : "USD " : "code" }}
       </div>
     </div>
   </div>

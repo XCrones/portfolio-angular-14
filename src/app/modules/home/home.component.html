@@ -74,10 +74,10 @@
       </div>
       <div class="py-5 lg:py-2 flex flex-row gap-x-1">
         <button
-          [ngClass]="{ 'link-active': paginator.isEqualPage(idx) }"
+          [ngClass]="{ 'link-active': paginator.isCurrentPage(idx) }"
           class="border-0 bg-gray-600 w-6 h-6 text-center rounded-full"
           *ngFor="let page of paginator.pages(mySkills); let idx = index"
-          (click)="paginator.setCurrPage(idx)"
+          (click)="paginator.jumpPage(idx)"
         ></button>
       </div>
     </div>

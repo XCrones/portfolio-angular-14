@@ -71,11 +71,7 @@ export class HomeComponent implements OnInit {
   }
 
   resizePaginator(width: number) {
-    if (width < 1024) {
-      this.paginator.init(3);
-    } else if (width >= 1024) {
-      this.paginator.init(6);
-    }
+    width < 1024 ? this.paginator.init(3) : this.paginator.init(6);
   }
 
   get paginator(): any {

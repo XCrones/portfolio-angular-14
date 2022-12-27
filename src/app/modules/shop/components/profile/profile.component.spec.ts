@@ -61,8 +61,8 @@ describe('ProfileComponent', () => {
 
   const mockPaginatorV2Service = jasmine.createSpyObj([
     'init',
-    'isEqualPage',
-    'setCurrPage',
+    'isCurrentPage',
+    'jumpPage',
     'pages',
     'parse',
   ]);
@@ -70,8 +70,8 @@ describe('ProfileComponent', () => {
   mockPaginatorV2Service.init.and.callFake((v: number) => {});
   mockPaginatorV2Service.parse.and.returnValue(testArrPurrchases);
   mockPaginatorV2Service.pages.and.returnValue(testPages);
-  mockPaginatorV2Service.isEqualPage.and.returnValue(true);
-  mockPaginatorV2Service.setCurrPage.and.callFake((v: number) => {});
+  mockPaginatorV2Service.isCurrentPage.and.returnValue(true);
+  mockPaginatorV2Service.jumpPage.and.callFake((v: number) => {});
 
   const mockAuthService = {
     get isAuth(): boolean {
@@ -134,8 +134,8 @@ describe('ProfileComponent', () => {
     mockPurchaseService.open.calls.reset();
 
     mockPaginatorV2Service.init.calls.reset();
-    mockPaginatorV2Service.isEqualPage.calls.reset();
-    mockPaginatorV2Service.setCurrPage.calls.reset();
+    mockPaginatorV2Service.isCurrentPage.calls.reset();
+    mockPaginatorV2Service.jumpPage.calls.reset();
     mockPaginatorV2Service.pages.calls.reset();
     mockPaginatorV2Service.parse.calls.reset();
 
@@ -216,19 +216,19 @@ describe('ProfileComponent', () => {
     expect(mockShopService.toggleProfile).toHaveBeenCalledTimes(1);
   });
 
-  it('setCurrPage(number) => search btn and click, then must be call width 0', () => {
+  it('jumpPage(number) => search btn and click, then must be call width 0', () => {
     const btn = fixture.debugElement.query(By.css('button.btn-page'));
     btn.nativeElement.click();
-    expect(mockPaginatorV2Service.setCurrPage).toHaveBeenCalledWith(0);
+    expect(mockPaginatorV2Service.jumpPage).toHaveBeenCalledWith(0);
   });
 
-  it('link-active must be contain in classList btn if isEqualPage true, else not contain', () => {
-    mockPaginatorV2Service.isEqualPage.and.returnValue(false);
+  it('link-active must be contain in classList btn if isCurrentPage true, else not contain', () => {
+    mockPaginatorV2Service.isCurrentPage.and.returnValue(false);
     fixture.detectChanges();
     let btn = fixture.debugElement.query(By.css('button.btn-page'));
     expect(btn.nativeElement.classList).not.toContain('link-active');
 
-    mockPaginatorV2Service.isEqualPage.and.returnValue(true);
+    mockPaginatorV2Service.isCurrentPage.and.returnValue(true);
     fixture.detectChanges();
     btn = fixture.debugElement.query(By.css('button.btn-page'));
     expect(btn.nativeElement.classList).toContain('link-active');

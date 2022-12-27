@@ -170,9 +170,9 @@
           <button
             type="button"
             class="btn-set-page border-0 bg-gray-600 w-5 h-5 text-center rounded-sm transition-all duration-300 flex justify-center items-center"
-            [ngClass]="{ 'link-active': paginator.isEqualPage(idx) }"
+            [ngClass]="{ 'link-active': paginator.isCurrentPage(idx) }"
             *ngFor="let value of paginator.pages(categories); let idx = index"
-            (click)="paginator.setCurrPage(idx)"
+            (click)="paginator.jumpPage(idx)"
           >
             {{ idx + 1 }}
           </button>

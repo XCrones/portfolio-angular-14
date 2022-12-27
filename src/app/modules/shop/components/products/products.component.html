@@ -6,19 +6,19 @@
       <div
         [@show]="'item'"
         class="flex-[0_1_290px] h-44 flex flex-col justify-between p-2 rounded-lg bg-white text-black"
-        *ngFor="let product of parseProducts() | filter: search"
+        *ngFor="let product of parseProducts() | filter : search"
       >
         <div class="flex flex-row h-full gap-x-2 justify-between items-center">
           <div
             class="flex-[0_1_50%] h-full flex flex-col gap-y-2 justify-evenly"
           >
             <div class="underline underline-offset-4 font-bold">
-              {{ product.price | currency: "USD ":"code" }}
+              {{ product.price | currency : "USD " : "code" }}
             </div>
             <div class="font-semibold first-letter:uppercase text-xs">
               {{
                 product.title.length > 50
-                  ? (product.title | slice: 0:50) + "..."
+                  ? (product.title | slice : 0 : 50) + "..."
                   : product.title
               }}
             </div>
@@ -97,9 +97,9 @@
       <button
         type="button"
         class="btn-page border-0 bg-gray-600 w-7 h-7 text-center rounded-sm transition-all duration-300 flex justify-center items-center"
-        [ngClass]="{ 'link-active': paginator.isEqualPage(idx) }"
+        [ngClass]="{ 'link-active': paginator.isCurrentPage(idx) }"
         *ngFor="let page of paginator.pages(productsV2); let idx = index"
-        (click)="paginator.setCurrPage(idx)"
+        (click)="paginator.jumpPage(idx)"
       >
         {{ idx + 1 }}
       </button>

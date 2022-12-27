@@ -24,8 +24,8 @@ describe('ProductsComponent', () => {
   const mockShopService = jasmine.createSpyObj(['toggleCart']);
   const mockPaginatorV2Service = jasmine.createSpyObj([
     'init',
-    'isEqualPage',
-    'setCurrPage',
+    'isCurrentPage',
+    'jumpPage',
     'pages',
     'parse',
   ]);
@@ -36,10 +36,10 @@ describe('ProductsComponent', () => {
   mockPopupService.show.and.callFake((item: IProductsV2) => {});
 
   mockPaginatorV2Service.init.and.callFake((sumItems?: number) => {});
-  mockPaginatorV2Service.isEqualPage.and.callFake((page: number): boolean => {
+  mockPaginatorV2Service.isCurrentPage.and.callFake((page: number): boolean => {
     return false;
   });
-  mockPaginatorV2Service.setCurrPage.and.callFake((page: number) => {});
+  mockPaginatorV2Service.jumpPage.and.callFake((page: number) => {});
   mockPaginatorV2Service.pages.and.callFake((arr: Array<any>): Array<any> => {
     return [];
   });
@@ -113,9 +113,9 @@ describe('ProductsComponent', () => {
     mockPrifleService.isInCart.calls.reset();
     mockShopService.toggleCart.calls.reset();
     mockPaginatorV2Service.init.calls.reset();
-    mockPaginatorV2Service.isEqualPage.calls.reset();
-    mockPaginatorV2Service.setCurrPage.calls.reset();
-    mockPaginatorV2Service.setCurrPage.calls.reset();
+    mockPaginatorV2Service.isCurrentPage.calls.reset();
+    mockPaginatorV2Service.jumpPage.calls.reset();
+    mockPaginatorV2Service.jumpPage.calls.reset();
     mockPaginatorV2Service.parse.calls.reset();
 
     fixture.detectChanges();

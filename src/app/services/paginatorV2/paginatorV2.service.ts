@@ -6,30 +6,27 @@ import { Injectable } from '@angular/core';
 export class PaginatorV2Service {
   constructor() {}
 
-  private currPage: number = 1;
-  private sumItems: number = 4;
+  private currentPage: number = 1;
+  private sumItemsOnPage: number = 4;
   private readonly defaultSumItems = 4;
 
   init(sumItems?: number) {
-    this.sumItems = !!!sumItems
+    this.sumItemsOnPage = !!!sumItems
       ? this.defaultSumItems
       : sumItems < 1
       ? 1
       : sumItems;
   }
 
-  isEqualPage(page: number): boolean {
-    return this.currPage === page + 1;
-  }
+  isCurrentPage = (page: number): boolean => page + 1 === this.currentPage;
 
-  setCurrPage(page: number) {
-    this.currPage = page + 1;
+  jumpPage(page: number) {
+    this.currentPage = page + 1;
   }
 
   pages(arr: Array<any>): Array<any> {
     try {
-      let pages = new Array(Math.ceil(arr.length / this.sumItems));
-      return pages;
+      return Array(Math.ceil(arr.length / this.sumItemsOnPage)).fill('');
     } catch (e) {
       return [];
     }
@@ -37,8 +34,8 @@ export class PaginatorV2Service {
 
   parse(arr: Array<any>): Array<any> {
     try {
-      let from = (this.currPage - 1) * this.sumItems;
-      let to = from + this.sumItems;
+      let from = (this.currentPage - 1) * this.sumItemsOnPage;
+      let to = from + this.sumItemsOnPage;
       let result = arr.slice(from, to);
       return result;
     } catch (e) {

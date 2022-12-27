@@ -42,16 +42,16 @@
     >
       <div class="">{{ item.date }}</div>
       <div class="font-semibold">
-        {{ totalPrice(item) | currency: "USD ":"code" }}
+        {{ totalPrice(item) | currency : "USD " : "code" }}
       </div>
     </button>
   </div>
   <div class="flex flex-row justify-center items-center gap-1">
     <button
-      (click)="paginator.setCurrPage(idx)"
+      (click)="paginator.jumpPage(idx)"
       type="button"
       class="btn-page border-0 bg-gray-600 w-7 h-7 text-center rounded-sm transition-all duration-300 flex justify-center items-center"
-      [ngClass]="{ 'link-active': paginator.isEqualPage(idx) }"
+      [ngClass]="{ 'link-active': paginator.isCurrentPage(idx) }"
       *ngFor="let page of paginator.pages(purchases); let idx = index"
     >
       {{ idx + 1 }}

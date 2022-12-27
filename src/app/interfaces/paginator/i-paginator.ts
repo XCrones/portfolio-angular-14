@@ -4,6 +4,6 @@ export interface IPaginator {
   currPage: number;
   initPaginator(sumItem: number): void;
   getCurrPage(): number;
-  setCurrPage(page: number): void;
+  jumpPage(page: number): void;
   getPages(): Array<string>;
 }
