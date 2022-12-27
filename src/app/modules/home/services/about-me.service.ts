@@ -53,12 +53,17 @@ export class AboutMeService {
       about: ['RxJs', 'DI', 'Animations'],
     },
     {
-      title: 'хорошее знание VUE.js',
-      img: 'vue',
-      about: ['vuex, vue-router', 'vuelidate', 'transition, transitionGroup'],
+      title: 'хорошее знание react.js',
+      img: 'react',
+      about: ['react-router, hooks', 'react-hook-form', 'unit-test'],
     },
     {
-      title: 'хорошее знание Tailwind',
+      title: 'хорошее знание redux',
+      img: 'redux',
+      about: ['RTK', 'reducers', 'async thunk'],
+    },
+    {
+      title: 'хорошее знание Tailwind css',
       img: 'tailwind',
       about: ['Breakpoints', 'Flexbox/Grid', 'Transitions/Animation'],
     },
