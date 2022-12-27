@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { IContacts } from '../interfaces/i-contacts';
 
 @Injectable({
@@ -9,39 +10,38 @@ export class ContactsService {
 
   private readonly _contacts: Array<IContacts> = [
     {
-      service: 'gitHub',
+      service: environment.URL_CONTACTS.github.title,
       img: 'github',
-      link: 'https://github.com/XCrones/portfolio-angular-14',
-      localLink: 'XCrones',
+      link: environment.URL_CONTACTS.github.link,
+      localLink: environment.URL_CONTACTS.github.localLink,
       nickName: 'XCrones',
     },
     {
-      service: 'gmail',
+      service: environment.URL_CONTACTS.gmail.title,
       img: 'gmail',
-      link: 'mailto:Lymar.Serjey@gmail.com',
-      localLink: 'Lymar.Serjey@gmail.com',
+      link: environment.URL_CONTACTS.gmail.link,
+      localLink: environment.URL_CONTACTS.gmail.localLink,
       nickName: 'Лымарь Сергей',
     },
     {
-      service: 'telegram',
+      service: environment.URL_CONTACTS.telegram.title,
       img: 'telegram',
-      link: 'https://t.me/LymarSerjey',
-      localLink: '@LymarSerjey',
+      link: environment.URL_CONTACTS.telegram.link,
+      localLink: environment.URL_CONTACTS.telegram.localLink,
       nickName: 'Лымарь Сергей',
     },
     {
-      service: 'hh',
+      service: environment.URL_CONTACTS.hh.title,
       img: 'hh',
-      link: 'https://hh.ru/resume/0b952de7ff081a79d00039ed1f734d70356a78?from=share_ios',
-      localLink:
-        'https://hh.ru/resume/0b952de7ff081a79d00039ed1f734d70356a78?from=share_ios',
+      link: environment.URL_CONTACTS.hh.link,
+      localLink: environment.URL_CONTACTS.hh.localLink,
       nickName: 'Лымарь Сергей',
     },
     {
-      service: 'skype',
+      service: environment.URL_CONTACTS.skype.title,
       img: 'skype',
-      link: 'skype:Lymar.Serjey@gmail.com?userinfo',
-      localLink: 'Lymar.Serjey@gmail.com',
+      link: environment.URL_CONTACTS.skype.link,
+      localLink: environment.URL_CONTACTS.skype.localLink,
       nickName: 'Лымарь Сергей',
     },
   ];

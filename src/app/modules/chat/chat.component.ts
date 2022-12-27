@@ -16,6 +16,7 @@ import {
 import { AuthService } from '../auth/services/auth/auth.service';
 import { ProfileService } from './services/profile/profile.service';
 import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-chat',
@@ -47,7 +48,7 @@ import { Subscription } from 'rxjs';
 export class ChatComponent implements OnInit {
   private _routeEvent$!: Subscription;
   readonly metaMenu: IMenuProject = {
-    link: 'https://github.com/XCrones/portfolio-angular-14/tree/main/src/app/modules/chat',
+    link: environment.URL_GIT_PROJECTS.chat,
     title: 'chat',
     color: '#00c3ff',
   };

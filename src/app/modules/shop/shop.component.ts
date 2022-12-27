@@ -14,6 +14,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-shop',
@@ -46,7 +47,7 @@ export class ShopComponent implements OnInit {
   private _routeEvent$: any = undefined;
 
   readonly styleMenu: IMenuProject = {
-    link: 'https://github.com/XCrones/portfolio-angular-14/tree/main/src/app/modules/shop',
+    link: environment.URL_GIT_PROJECTS.shop,
     title: 'shop',
     color: '#00c3ff',
   };

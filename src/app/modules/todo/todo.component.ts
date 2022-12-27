@@ -16,6 +16,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-todo',
@@ -47,7 +48,7 @@ import { Subscription } from 'rxjs';
 export class TodoComponent implements OnInit {
   private _routeEvent$!: Subscription;
   private readonly _metaMenu: IMenuProject = {
-    link: 'https://github.com/XCrones/portfolio-angular-14/tree/main/src/app/modules/todo',
+    link: environment.URL_GIT_PROJECTS.todo,
     title: 'todo',
     color: '#00c3ff',
   };
