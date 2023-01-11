@@ -3,10 +3,11 @@ export interface AboutMe {
   frameWork: string;
   greetings: string;
   whatIsThis: string;
-  search: [
-    { about: string; goal: string },
-    { about: string; goal: string },
-    { about: string; goal: string }
-  ];
+  search: ISearch[];
   subtitle: string;
+}
+
+interface ISearch {
+  about: string;
+  goal: string;
 }
