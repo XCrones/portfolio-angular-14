@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Page404Component } from './components/page404/page404.component';
-import { ChatComponent } from './modules/chat/chat.component';
-import { ContactsComponent } from './modules/contacts/contacts.component';
-import { HomeComponent } from './modules/home/home.component';
-import { ProjectsComponent } from './modules/projects/projects.component';
-import { ShopComponent } from './modules/shop/shop.component';
-import { TodoComponent } from './modules/todo/todo.component';
+
+import { HomeComponent } from './pages/home/home.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { ContactsComponent } from './pages/contacts/contacts.component';
+import { Page404Component } from './pages/page404/page404.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import { ShopComponent } from './pages/shop/shop.component';
+import { TodoComponent } from './pages/todo/todo.component';
 
 export interface IRouterLinkItem {
   link: string;

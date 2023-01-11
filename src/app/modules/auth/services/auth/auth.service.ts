@@ -1,9 +1,21 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { IErrors } from '../../interfaces/errors/i-errors';
-import { ISignIn } from '../../interfaces/signIn/i-sign-in';
-import { ISignUp } from '../../interfaces/signup/i-sign-up';
 import firebase from 'firebase/compat/app';
+
+export interface ISignUp {
+  email: string;
+  password: string;
+}
+
+export interface ISignIn {
+  email: string;
+  password: string;
+}
+
+export interface IErrors {
+  error: string;
+  title: string;
+}
 
 @Injectable({
   providedIn: 'root',

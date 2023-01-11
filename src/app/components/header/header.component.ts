@@ -6,7 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { AboutMeService } from 'src/app/modules/home/services/about-me.service';
+import { AboutMeService } from 'src/app/pages/home/services/about-me.service';
 import { NeonService } from 'src/app/services/neon/neon.service';
 import { ShadowService } from 'src/app/services/shadow/shadow.service';
 import {

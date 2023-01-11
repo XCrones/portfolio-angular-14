@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ISignUp } from '../../interfaces/signup/i-sign-up';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService, ISignUp } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-sign-up',
