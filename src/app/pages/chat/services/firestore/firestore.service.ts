@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, firstValueFrom } from 'rxjs';
-import { IMessagesItem } from '../../interfaces/messages/i-messages-item';
 import firebase from 'firebase/compat/app';
+import { IMessagesItem } from '../profile/profile.service';
 
 const COLLECTION_USERS = 'chat-users';
 const COLLECTION_CHATS = 'chats';
@@ -76,7 +76,7 @@ export class FirestoreService {
         messages: firebase.firestore.FieldValue.arrayUnion(message),
       });
     } catch (e) {
-      const newField: Array<IMessagesItem> = [message];
+      const newField: IMessagesItem[] = [message];
       await db.set({
         messages: newField,
       });

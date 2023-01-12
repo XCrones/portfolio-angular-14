@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ICategories } from '../../interfaces/categories/i-categories';
+
+export interface ICategories {
+  items: Array<string>;
+  currCategori: string;
+}
 
 @Injectable({
   providedIn: 'root',

@@ -2,7 +2,25 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_BASE_URL } from '../../apiUrl';
-import { IProductsV2 } from '../../interfaces/products_v2/i-products-v2';
+import { IPurchasesProducts } from '../profile/profile.service';
+
+export interface IPurchasesItem {
+  date: string;
+  products: IPurchasesProducts[];
+}
+
+export interface IProductsV2 {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+}
 
 const filters = ['цене', 'рейтингу', 'остатку'];
 
@@ -26,7 +44,7 @@ export class ProductsV2Service {
   get getAll(): Observable<IProductsV2[]> {
     return this.httpCilent.get<IProductsV2[]>(`${this._apiBaseURL}/products`);
   }
-  get filters(): Array<string> {
+  get filters(): string[] {
     return filters;
   }
   get currFilter(): string {

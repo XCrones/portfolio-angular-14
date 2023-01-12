@@ -10,9 +10,11 @@ import {
   trigger,
 } from '@angular/animations';
 import { Subscription } from 'rxjs';
-import { IProductsV2 } from 'src/app/pages/shop/interfaces/products_v2/i-products-v2';
 import { PopupService } from 'src/app/pages/shop/services/popup/popup.service';
-import { ProductsV2Service } from 'src/app/pages/shop/services/products_v2/products-v2.service';
+import {
+  IProductsV2,
+  ProductsV2Service,
+} from 'src/app/pages/shop/services/products_v2/products-v2.service';
 import { ProfileService } from 'src/app/pages/shop/services/profile/profile.service';
 import { ShopService } from 'src/app/pages/shop/services/shop/shop.service';
 
@@ -40,7 +42,7 @@ import { ShopService } from 'src/app/pages/shop/services/shop/shop.service';
   ],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  private _productsV2: Array<IProductsV2> = [];
+  private _productsV2: IProductsV2[] = [];
   private _productsV2$!: Subscription;
   readonly pathload: string = '../../../../assets/img/load.svg';
 
@@ -70,7 +72,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   get neon(): any {
     return this._neonService.isEnable();
   }
-  get productsV2(): Array<IProductsV2> {
+  get productsV2(): IProductsV2[] {
     return this.sorting(this._productsV2);
   }
   get search(): string {
@@ -80,7 +82,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     return this.search.length < 1 ? false : true;
   }
 
-  parseProducts(): Array<IProductsV2> {
+  parseProducts(): IProductsV2[] {
     if (!this.isSearch) {
       return this.paginator.parse(this.productsV2);
     } else {
@@ -104,7 +106,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     return (rate * 100) / 5;
   }
 
-  sorting(arr: Array<IProductsV2>): Array<IProductsV2> {
+  sorting(arr: IProductsV2[]): IProductsV2[] {
     let filter = this._productsV2Service.currFilter;
     let stateFilter = this._productsV2Service.stateCurrFilter;
     switch (filter) {

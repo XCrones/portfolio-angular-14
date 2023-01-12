@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import { IProductsV2 } from '../../interfaces/products_v2/i-products-v2';
+import { IProductsV2 } from '../products_v2/products-v2.service';
+
+export interface ISelectPurchaseItem {
+  count: number;
+  price: number;
+  title: string;
+  image: string;
+}
 
 @Injectable({
   providedIn: 'root',

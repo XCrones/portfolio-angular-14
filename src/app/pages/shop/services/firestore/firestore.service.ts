@@ -3,9 +3,16 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { firstValueFrom, Observable } from 'rxjs';
 
 import { FIELDS_DB, IFieldsDb } from '../../fieldsDb';
-import { IUpdatePurch } from '../../interfaces/firestore-shop/i-update-purch';
-import { IUpdateCart } from '../../interfaces/firestore-shop/i-update-cart';
-import { IProfileV2 } from '../../interfaces/profileV2/i-profile-v2';
+import { ICartItem, IProfileV2 } from '../profile/profile.service';
+import { IPurchasesItem } from '../products_v2/products-v2.service';
+
+export interface IUpdatePurch {
+  purchases: IPurchasesItem[];
+}
+
+export interface IUpdateCart {
+  cart: ICartItem[];
+}
 
 const COLLECTION = 'shop-users';
 

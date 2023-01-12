@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
-import { IMessagesItem } from 'src/app/pages/chat/interfaces/messages/i-messages-item';
-import { ProfileService } from 'src/app/pages/chat/services/profile/profile.service';
+import {
+  IMessagesItem,
+  ProfileService,
+} from 'src/app/pages/chat/services/profile/profile.service';
 
 @Component({
   selector: 'app-messages',

@@ -1,17 +1,35 @@
 import { Inject, Injectable } from '@angular/core';
-import { IProductsV2 } from '../../interfaces/products_v2/i-products-v2';
-import { ProductsV2Service } from '../products_v2/products-v2.service';
-import { IProfileV2 } from '../../interfaces/profileV2/i-profile-v2';
-import { IPurchasesItem } from '../../interfaces/purchases-item/i-purchases-item';
-import { IUnparsingCart } from '../../interfaces/unparsing-cart/i-unparsing-cart';
-import { ICartItem } from '../../interfaces/cart-item/i-cart-item';
-import { IPurchasesProducts } from '../../interfaces/purchases-products/i-purchases-products';
+import {
+  IProductsV2,
+  IPurchasesItem,
+  ProductsV2Service,
+} from '../products_v2/products-v2.service';
 import { Subscription } from 'rxjs';
-import { FirestoreService } from '../firestore/firestore.service';
+import { FirestoreService, IUpdateCart } from '../firestore/firestore.service';
 import { LocalStorageService } from './local-storage.service';
 import { FIELDS_DB, IFieldsDb } from '../../fieldsDb';
-import { IUpdateCart } from '../../interfaces/firestore-shop/i-update-cart';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
+
+export interface IUnparsingCart {
+  product: IProductsV2;
+  count: number;
+}
+
+export interface IPurchasesProducts {
+  id: number;
+  count: number;
+  price: number;
+}
+
+export interface ICartItem {
+  id: number;
+  count: number;
+}
+
+export interface IProfileV2 {
+  cart: ICartItem[];
+  purchases: IPurchasesItem[];
+}
 
 @Injectable({
   providedIn: 'root',
@@ -52,10 +70,10 @@ export class ProfileService {
     }
   }
 
-  get purchases(): Array<IPurchasesItem> {
+  get purchases(): IPurchasesItem[] {
     return this._profile.purchases;
   }
-  get unparsingCart(): Array<IUnparsingCart> {
+  get unparsingCart(): IUnparsingCart[] {
     return this._unparsingCart;
   }
   get isLoadDataPurchases(): boolean {
@@ -89,7 +107,7 @@ export class ProfileService {
   private updateCarts(updateFromServer: boolean) {
     this.calcTotalPrice();
 
-    let parsingCart: Array<ICartItem> = this.unparsingCart.map((item) => {
+    let parsingCart: ICartItem[] = this.unparsingCart.map((item) => {
       let parsingItemCart: ICartItem = {
         id: item.product.id,
         count: item.count,
@@ -297,7 +315,7 @@ export class ProfileService {
           let searchProfile = observer[this._fieldsDb.purchases];
 
           if (!!searchCart && Array.isArray(searchCart)) {
-            let tempCart: Array<ICartItem> = searchCart;
+            let tempCart: ICartItem[] = searchCart;
             this.makeCart(tempCart, true);
             this._isLoadDataCart = false;
           } else {
@@ -305,7 +323,7 @@ export class ProfileService {
           }
 
           if (!!searchProfile && Array.isArray(searchProfile)) {
-            let tempPurchases: Array<IPurchasesItem> = searchProfile;
+            let tempPurchases: IPurchasesItem[] = searchProfile;
             this._profile.purchases = tempPurchases;
             this._isLoadDataPurchases = false;
           } else {
@@ -320,7 +338,7 @@ export class ProfileService {
     }
   }
 
-  private makeCart(arr: Array<ICartItem>, deleteFromLocal: boolean) {
+  private makeCart(arr: ICartItem[], deleteFromLocal: boolean) {
     if (this._authService.isAuth) {
       this.clearProfile(deleteFromLocal);
     }

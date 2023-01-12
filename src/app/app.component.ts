@@ -6,9 +6,9 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
-import { HeaderService } from './services/header/header.service';
 import { NeonService } from './services/neon/neon.service';
 import { ShadowService } from './services/shadow/shadow.service';
+import { HeaderService } from './components/header/services/header.service';
 
 @Component({
   selector: 'app-root',

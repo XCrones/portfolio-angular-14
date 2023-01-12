@@ -17,7 +17,7 @@ import { ProductsComponent } from 'src/app/components/shop/products/products.com
 import { CartComponent } from 'src/app/components/shop/cart/cart.component';
 import { ProfileComponent } from 'src/app/components/shop/profile/profile.component';
 import { PurchasesComponent } from 'src/app/components/shop/purchases/purchases.component';
-import { ToolsComponent } from 'src/app/components/shop/header/tools/tools.component';
+import { ToolsComponent } from 'src/app/components/shop/tools/tools.component';
 import { InfoProjectModule } from 'src/app/components/info-project/info-project.module';
 import { MenuProjectModule } from 'src/app/components/menu-project/menu-project.module';
 import { BoxNeonModule } from 'src/app/directives/box-neon/box-neon.module';

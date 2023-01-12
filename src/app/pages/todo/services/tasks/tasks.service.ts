@@ -1,7 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ISorting } from '../../interfaces/sorting/i-sorting';
-import { ITasks } from '../../interfaces/tasks/i-tasks';
+
+export interface ISorting {
+  type: string;
+  state: boolean;
+}
+
+export interface ITasks {
+  id: number;
+  name: string;
+  category: string;
+  priority: number;
+  date: string;
+  status: boolean;
+  description: string;
+}
 
 @Injectable({
   providedIn: 'root',

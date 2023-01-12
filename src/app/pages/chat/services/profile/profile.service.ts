@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Subject, Subscription, BehaviorSubject } from 'rxjs';
-import { IMessagesItem } from '../../interfaces/messages/i-messages-item';
 import { FirestoreService } from '../firestore/firestore.service';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
+
+export interface IMessagesItem {
+  uid: string;
+  name: string;
+  message: string;
+  date: string;
+}
 
 @Injectable({
   providedIn: 'root',

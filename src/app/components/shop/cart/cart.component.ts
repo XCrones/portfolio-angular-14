@@ -6,8 +6,10 @@ import {
   Output,
 } from '@angular/core';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
-import { IUnparsingCart } from 'src/app/pages/shop/interfaces/unparsing-cart/i-unparsing-cart';
-import { ProfileService } from 'src/app/pages/shop/services/profile/profile.service';
+import {
+  IUnparsingCart,
+  ProfileService,
+} from 'src/app/pages/shop/services/profile/profile.service';
 import { ShopService } from 'src/app/pages/shop/services/shop/shop.service';
 import { NeonService } from 'src/app/services/neon/neon.service';
 import { PaginatorV2Service } from 'src/app/services/paginatorV2/paginatorV2.service';
@@ -45,7 +47,7 @@ export class CartComponent implements OnInit {
   get neonState(): boolean {
     return this._neonService.isEnable();
   }
-  get cart(): Array<IUnparsingCart> {
+  get cart(): IUnparsingCart[] {
     return this._profileService.unparsingCart;
   }
   get totalPrice(): number {

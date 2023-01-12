@@ -1,10 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { IModal } from 'src/app/pages/todo/interfaces/modal/i-modal';
-import { ITasks } from 'src/app/pages/todo/interfaces/tasks/i-tasks';
-import { ModalService } from 'src/app/pages/todo/services/modal/modal.service';
+import {
+  IModal,
+  ModalService,
+} from 'src/app/pages/todo/services/modal/modal.service';
 import { PopupService } from 'src/app/pages/todo/services/popup/popup.service';
-import { TasksService } from 'src/app/pages/todo/services/tasks/tasks.service';
+import {
+  ITasks,
+  TasksService,
+} from 'src/app/pages/todo/services/tasks/tasks.service';
 import { NeonService } from 'src/app/services/neon/neon.service';
 
 @Component({

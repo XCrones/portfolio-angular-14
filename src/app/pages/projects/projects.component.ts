@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NeonService } from 'src/app/services/neon/neon.service';
-import { HeaderService } from 'src/app/services/header/header.service';
 import { ProjectsService } from './services/projects/projects.service';
 import { IRouterLinkItem, ROUTER_LINKS } from 'src/app/app-routing.module';
+import { HeaderService } from 'src/app/components/header/services/header.service';
 
 @Component({
   selector: 'app-projects',

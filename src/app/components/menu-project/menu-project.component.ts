@@ -1,9 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HeaderService } from 'src/app/services/header/header.service';
 import { NeonService } from 'src/app/services/neon/neon.service';
 import { InfoProjectService } from '../info-project/services/info-project/info-project.service';
-import { IMenuProject } from './interfaces/menu-project/i-menu-project';
 import { Router } from '@angular/router';
+import { HeaderService } from '../header/services/header.service';
+
+export interface IMenuProject {
+  link: string;
+  title: string;
+  color: string;
+}
 
 @Component({
   selector: 'app-menu-project',

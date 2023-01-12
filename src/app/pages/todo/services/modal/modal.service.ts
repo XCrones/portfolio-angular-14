@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
-import { IModal } from '../../interfaces/modal/i-modal';
 import { TasksService } from '../tasks/tasks.service';
+
+export interface IDelete {
+  id: number;
+  name: string;
+}
+
+export interface IModal {
+  isGlobal: boolean;
+  id: number;
+  title: string;
+}
 
 @Injectable({
   providedIn: 'root',

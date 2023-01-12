@@ -1,9 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
-import { IProductsV2 } from '../../interfaces/products_v2/i-products-v2';
-import { IPurchasesItem } from '../../interfaces/purchases-item/i-purchases-item';
-import { ISelectPurchase } from '../../interfaces/select-purchase/i-select-purchase';
-import { ProductsV2Service } from '../products_v2/products-v2.service';
+import {
+  IProductsV2,
+  IPurchasesItem,
+  ProductsV2Service,
+} from '../products_v2/products-v2.service';
+import { ISelectPurchaseItem } from '../popup/popup.service';
+
+export interface ISelectPurchase {
+  date: string;
+  price: number;
+  items: ISelectPurchaseItem[];
+}
 
 @Injectable({
   providedIn: 'root',

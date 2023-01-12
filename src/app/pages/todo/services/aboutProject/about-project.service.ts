@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IInfoProject } from 'src/app/components/info-project/interfaces/info-project/i-info-project';
+import { IInfoProject } from 'src/app/components/info-project/services/info-project/info-project.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +7,7 @@ import { IInfoProject } from 'src/app/components/info-project/interfaces/info-pr
 export class AboutProjectService {
   constructor() {}
 
-  public readonly about: Array<IInfoProject> = [
+  public readonly about: IInfoProject[] = [
     {
       nameProject: 'список задач',
     },

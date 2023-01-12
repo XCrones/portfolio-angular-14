@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IProductsV2 } from 'src/app/pages/shop/interfaces/products_v2/i-products-v2';
 import { PopupService } from 'src/app/pages/shop/services/popup/popup.service';
+import { IProductsV2 } from 'src/app/pages/shop/services/products_v2/products-v2.service';
 import { ProfileService } from 'src/app/pages/shop/services/profile/profile.service';
 import { NeonService } from 'src/app/services/neon/neon.service';
 

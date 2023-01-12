@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
-import { IPurchasesItem } from 'src/app/pages/shop/interfaces/purchases-item/i-purchases-item';
+import { IPurchasesItem } from 'src/app/pages/shop/services/products_v2/products-v2.service';
 import { ProfileService } from 'src/app/pages/shop/services/profile/profile.service';
 import { PurchaseService } from 'src/app/pages/shop/services/purchase/purchase.service';
 import { ShopService } from 'src/app/pages/shop/services/shop/shop.service';

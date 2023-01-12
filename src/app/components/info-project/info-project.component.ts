@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NeonService } from 'src/app/services/neon/neon.service';
-import { IInfoProject } from './interfaces/info-project/i-info-project';
-import { InfoProjectService } from './services/info-project/info-project.service';
+import {
+  IInfoProject,
+  InfoProjectService,
+} from './services/info-project/info-project.service';
 
 @Component({
   selector: 'app-info-project',
@@ -9,8 +11,8 @@ import { InfoProjectService } from './services/info-project/info-project.service
   styleUrls: ['./info-project.component.scss'],
 })
 export class InfoProjectComponent implements OnInit {
-  @Input() info: Array<IInfoProject> = [];
-  private _tempData: Array<IInfoProject> = [];
+  @Input() info: IInfoProject[] = [];
+  private _tempData: IInfoProject[] = [];
   private _nameProject: string | undefined = 'undefined';
 
   constructor(
@@ -28,11 +30,11 @@ export class InfoProjectComponent implements OnInit {
   get nameProject(): string | undefined {
     return this._nameProject;
   }
-  get tempData(): Array<IInfoProject> {
+  get tempData(): IInfoProject[] {
     return this._tempData;
   }
 
-  deleteNameProject(arr: Array<IInfoProject>) {
+  deleteNameProject(arr: IInfoProject[]) {
     let tempIndex = arr.findIndex(
       (value) => typeof value['nameProject'] !== 'undefined'
     );

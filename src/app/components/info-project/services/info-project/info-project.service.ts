@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
 
+export interface IInfoProject {
+  title?: string;
+  subtitle?: Array<string>;
+  nameProject?: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })

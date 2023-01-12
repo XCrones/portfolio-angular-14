@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { HeaderService } from 'src/app/services/header/header.service';
 
 import { AboutProjectService } from './services/aboutProject/about-project.service';
 import { PopupService } from './services/popup/popup.service';
@@ -13,9 +12,12 @@ import {
 } from '@angular/animations';
 import { environment } from 'src/environments/environment';
 import { ProjectsService } from 'src/app/pages/projects/services/projects/projects.service';
-import { IMenuProject } from 'src/app/components/menu-project/interfaces/menu-project/i-menu-project';
-import { InfoProjectService } from 'src/app/components/info-project/services/info-project/info-project.service';
-import { IInfoProject } from 'src/app/components/info-project/interfaces/info-project/i-info-project';
+import {
+  IInfoProject,
+  InfoProjectService,
+} from 'src/app/components/info-project/services/info-project/info-project.service';
+import { IMenuProject } from 'src/app/components/menu-project/menu-project.component';
+import { HeaderService } from 'src/app/components/header/services/header.service';
 
 @Component({
   selector: 'app-shop',
@@ -85,7 +87,7 @@ export class ShopComponent implements OnInit {
   get isHideInfo(): boolean {
     return this._infoProjectService.isHide();
   }
-  get aboutData(): Array<IInfoProject> {
+  get aboutData(): IInfoProject[] {
     return this._aboutProjectService.about;
   }
 }

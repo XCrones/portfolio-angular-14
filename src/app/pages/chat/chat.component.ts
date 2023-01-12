@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { HeaderService } from 'src/app/services/header/header.service';
 import { AboutProjectService } from './services/aboutProject/about-project.service';
 import {
   animate,
@@ -13,10 +12,13 @@ import { ProfileService } from './services/profile/profile.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ProjectsService } from 'src/app/pages/projects/services/projects/projects.service';
-import { InfoProjectService } from 'src/app/components/info-project/services/info-project/info-project.service';
-import { IMenuProject } from 'src/app/components/menu-project/interfaces/menu-project/i-menu-project';
-import { IInfoProject } from 'src/app/components/info-project/interfaces/info-project/i-info-project';
+import {
+  IInfoProject,
+  InfoProjectService,
+} from 'src/app/components/info-project/services/info-project/info-project.service';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
+import { IMenuProject } from 'src/app/components/menu-project/menu-project.component';
+import { HeaderService } from 'src/app/components/header/services/header.service';
 
 @Component({
   selector: 'app-chat',
@@ -87,7 +89,7 @@ export class ChatComponent implements OnInit {
   get isHideInfo(): boolean {
     return this._infoProjectService.isHide();
   }
-  get aboutData(): Array<IInfoProject> {
+  get aboutData(): IInfoProject[] {
     return this._aboutProjectService.about;
   }
   get isAuth(): boolean {

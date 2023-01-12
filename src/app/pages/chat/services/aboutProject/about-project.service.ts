@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { IInfoProject } from 'src/app/components/info-project/interfaces/info-project/i-info-project';
+import { IInfoProject } from 'src/app/components/info-project/services/info-project/info-project.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AboutProjectService {
-  readonly about: Array<IInfoProject> = [
+  readonly about: IInfoProject[] = [
     {
       nameProject: 'чат',
     },

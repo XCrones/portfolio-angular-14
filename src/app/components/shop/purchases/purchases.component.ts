@@ -1,7 +1,9 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ISelectPurchase } from 'src/app/pages/shop/interfaces/select-purchase/i-select-purchase';
-import { PurchaseService } from 'src/app/pages/shop/services/purchase/purchase.service';
+import {
+  ISelectPurchase,
+  PurchaseService,
+} from 'src/app/pages/shop/services/purchase/purchase.service';
 import { PaginatorV2Service } from 'src/app/services/paginatorV2/paginatorV2.service';
 
 @Component({

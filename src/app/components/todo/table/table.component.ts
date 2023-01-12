@@ -1,11 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { IModal } from 'src/app/pages/todo/interfaces/modal/i-modal';
-import { ISorting } from 'src/app/pages/todo/interfaces/sorting/i-sorting';
-import { ITasks } from 'src/app/pages/todo/interfaces/tasks/i-tasks';
-import { IThead } from 'src/app/pages/todo/interfaces/thead/i-thead';
-import { ModalService } from 'src/app/pages/todo/services/modal/modal.service';
+import {
+  IModal,
+  ModalService,
+} from 'src/app/pages/todo/services/modal/modal.service';
 import { PopupService } from 'src/app/pages/todo/services/popup/popup.service';
-import { TasksService } from 'src/app/pages/todo/services/tasks/tasks.service';
+import {
+  ISorting,
+  ITasks,
+  TasksService,
+} from 'src/app/pages/todo/services/tasks/tasks.service';
+
+interface IThead {
+  title: string;
+  filter: string;
+}
 
 @Component({
   selector: 'app-table',

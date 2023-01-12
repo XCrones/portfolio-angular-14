@@ -3,11 +3,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PaginatorV2Service } from 'src/app/services/paginatorV2/paginatorV2.service';
 import { NeonService } from 'src/app/services/neon/neon.service';
 import { Subscription } from 'rxjs';
-import { ITasks } from 'src/app/pages/todo/interfaces/tasks/i-tasks';
 import { PopupService } from 'src/app/pages/todo/services/popup/popup.service';
-import { TasksService } from 'src/app/pages/todo/services/tasks/tasks.service';
-import { CategoriesService } from 'src/app/pages/todo/services/categories/categories.service';
-import { ICategories } from 'src/app/pages/todo/interfaces/categories/i-categories';
+import {
+  ITasks,
+  TasksService,
+} from 'src/app/pages/todo/services/tasks/tasks.service';
+import {
+  CategoriesService,
+  ICategories,
+} from 'src/app/pages/todo/services/categories/categories.service';
 
 @Component({
   selector: 'app-popup',

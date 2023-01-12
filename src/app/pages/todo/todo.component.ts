@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { HeaderService } from 'src/app/services/header/header.service';
 
 import { AboutProjectService } from './services/aboutProject/about-project.service';
 import { ModalService } from './services/modal/modal.service';
@@ -15,9 +14,12 @@ import {
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ProjectsService } from 'src/app/pages/projects/services/projects/projects.service';
-import { IMenuProject } from 'src/app/components/menu-project/interfaces/menu-project/i-menu-project';
-import { InfoProjectService } from 'src/app/components/info-project/services/info-project/info-project.service';
-import { IInfoProject } from 'src/app/components/info-project/interfaces/info-project/i-info-project';
+import {
+  IInfoProject,
+  InfoProjectService,
+} from 'src/app/components/info-project/services/info-project/info-project.service';
+import { IMenuProject } from 'src/app/components/menu-project/menu-project.component';
+import { HeaderService } from 'src/app/components/header/services/header.service';
 
 @Component({
   selector: 'app-todo',
